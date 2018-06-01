@@ -10,10 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     private var sceneView:ARSCNView!
-    
+    private var planeColor:UIColor!
     override func viewDidLoad() {
         super.viewDidLoad()
+        planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         setupScene()
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,17 +69,18 @@ extension ViewController: ARSCNViewDelegate {
         let width = CGFloat(planeAnchor.extent.x)
         let height = CGFloat(planeAnchor.extent.y)
         let plane = SCNPlane(width: width, height: height)
-        
-        plane.materials.first?.diffuse.contents = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+
+        plane.materials.first?.diffuse.contents = planeColor
         let planeNode = SCNNode(geometry: plane)
-        
+
         let position = SCNVector3(planeAnchor.center.x,
                                 planeAnchor.center.y,
                                 planeAnchor.center.z)
-        
+
         planeNode.position = position
         planeNode.eulerAngles.x = -.pi/2
         node.addChildNode(planeNode)
+
         
     }
     
