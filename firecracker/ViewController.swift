@@ -57,6 +57,29 @@ class ViewController: UIViewController {
         sceneView.automaticallyUpdatesLighting = true
     }
     
+    func addTapGestureToSceneView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(handleTap(sender:)))
+        sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func handleTap(sender recognizer: UIGestureRecognizer) {
+        let tapLocation = recognizer.location(in: sceneView)
+        let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        
+        guard let hitTestResult = hitTestResults.first else { return }
+        let translation = hitTestResult.worldTransform.translation
+        
+        let ball = SCNSphere(radius:CGFloat(0.15))
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 1)
+        ball.materials = [material]
+        let ballNode = SCNNode(geometry: ball)
+        ballNode.name = "Ball"
+        ballNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
+        
+        sceneView.scene.rootNode.addChildNode(ballNode)
+    }
+    
 }
 
 
