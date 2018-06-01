@@ -69,6 +69,109 @@ class ViewController: UIViewController {
     }
     
     @objc func handlePan(sender recognizer: UIPanGestureRecognizer) {
+//        let translation = recognizer.translation(in: sceneView)
+//        let location = recognizer.location(in: sceneView)
+        
+        let tapLocation = recognizer.location(in: sceneView)
+        let planeTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+        let nodeTestResults = sceneView.hitTest(tapLocation)
+        
+        guard let planeTestResult = planeTestResults.first else { return }
+        guard let nodeTestResult = nodeTestResults.first?.node else { return }
+        
+        let translation = planeTestResult.worldTransform.translation
+        
+        
+        switch recognizer.state {
+            case .began:
+                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
+                    print("touch existing ball")
+                } else {
+                    
+                    let ball = SCNCylinder(radius: 0.008, height: 0.05)
+                    let material = SCNMaterial()
+                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+                    ball.materials = [material]
+                    let ballNode = SCNNode(geometry: ball)
+                    ballNode.name = "Ball"
+                    ballNode.eulerAngles.x = -.pi/2
+                    ballNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
+                    
+                    let ballCore = SCNCylinder(radius: 0.005, height: 0.03)
+                    let ballCoreMaterial = SCNMaterial()
+                    ballCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 1)
+                    ballCore.materials = [ballCoreMaterial]
+                    let ballCoreNode = SCNNode(geometry: ballCore)
+                    ballCoreNode.name = "BallCore"
+                    ballCoreNode.position = SCNVector3Make(0, 0.01, 0)
+                    ballNode.addChildNode(ballCoreNode)
+                    
+                    sceneView.scene.rootNode.addChildNode(ballNode)
+                    
+                    
+                    
+                }
+            break
+            
+            case .changed:
+                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
+                    print("touch existing ball")
+                } else {
+                    
+                    let ball = SCNCylinder(radius: 0.008, height: 0.05)
+                    let material = SCNMaterial()
+                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+                    ball.materials = [material]
+                    let ballNode = SCNNode(geometry: ball)
+                    ballNode.name = "Ball"
+                    ballNode.eulerAngles.x = -.pi/2
+                    ballNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
+                    
+                    let ballCore = SCNCylinder(radius: 0.005, height: 0.03)
+                    let ballCoreMaterial = SCNMaterial()
+                    ballCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 1)
+                    ballCore.materials = [ballCoreMaterial]
+                    let ballCoreNode = SCNNode(geometry: ballCore)
+                    ballCoreNode.name = "BallCore"
+                    ballCoreNode.position = SCNVector3Make(0, 0.01, 0)
+                    ballNode.addChildNode(ballCoreNode)
+                    
+                    sceneView.scene.rootNode.addChildNode(ballNode)
+                    
+                    
+                    
+                }
+            break
+            case .ended:
+                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
+                    print("touch existing ball")
+                } else {
+                    
+                    let box = SCNCylinder(radius: 0.015, height: 0.05)
+                    let material = SCNMaterial()
+                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+                    box.materials = [material]
+                    let boxNode = SCNNode(geometry: box)
+                    boxNode.name = "Ball"
+                    boxNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
+                    let boxCore = SCNCylinder(radius: 0.01, height: 0.05)
+                    let boxCoreMaterial = SCNMaterial()
+                    boxCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.6, blue: 0.6, alpha: 1)
+                    boxCore.materials = [boxCoreMaterial]
+                    let boxCoreNode = SCNNode(geometry: boxCore)
+                    boxCoreNode.name = "BallCore"
+                    boxCoreNode.position = SCNVector3Make(0, 0.01, 0)
+                    boxNode.addChildNode(boxCoreNode)
+                    
+                    sceneView.scene.rootNode.addChildNode(boxNode)
+                    
+                    
+                    
+                }
+            break
+            default: break
+        }
+        
     
         
         
