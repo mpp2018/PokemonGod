@@ -38,11 +38,12 @@ class ViewController: UIViewController {
     func setupScene() {
         sceneView = ARSCNView(frame: self.view.bounds)
         sceneView.showsStatistics = true
-        sceneView.scene = SCNScene()
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+//        addTapGestureToSceneView()
+        addPanGestureToSceneView()
+        configureLighting()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        configureLighting()
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         self.view.addSubview(sceneView)
     }
  
@@ -60,6 +61,18 @@ class ViewController: UIViewController {
     func addTapGestureToSceneView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action:#selector(handleTap(sender:)))
         sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func addPanGestureToSceneView() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
+        sceneView.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    @objc func handlePan(sender recognizer: UIPanGestureRecognizer) {
+    
+        
+        
+        
     }
     
     @objc func handleTap(sender recognizer: UIGestureRecognizer) {
