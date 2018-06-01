@@ -103,3 +103,18 @@ extension ViewController:SCNPhysicsContactDelegate {
     }
 }
 
+extension float4x4 {
+    
+    var translation: float3 {
+        let translation = self.columns.3
+        return float3(translation.x, translation.y, translation.z)
+    }
+    
+}
+
+extension SCNMatrix4 {
+    var translation: float3 {
+        return float3(x:m41,y:m42,z:m43)
+    }
+}
+
