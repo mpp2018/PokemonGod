@@ -103,6 +103,17 @@ extension ViewController:SCNPhysicsContactDelegate {
     }
 }
 
+extension ViewController:UIGestureRecognizerDelegate {
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//
+//    }
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
+//
+//    }
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+//
+//    }
+}
 extension float4x4 {
     
     var translation: float3 {
