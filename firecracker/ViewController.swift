@@ -11,9 +11,11 @@ import UIKit
 class ViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
+    private var previousTranslation:float3 = float3(0.0,0.0,0.0)
     override func viewDidLoad() {
         super.viewDidLoad()
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+        previousTranslation = float3(0.0,0.0,0.0)
         setupScene()
         
         
@@ -78,96 +80,47 @@ class ViewController: UIViewController {
         
         guard let planeTestResult = planeTestResults.first else { return }
         guard let nodeTestResult = nodeTestResults.first?.node else { return }
+        let currentTranslation = planeTestResult.worldTransform.translation
+        let diffTranslation = (currentTranslation - previousTranslation)
+        let (diffx, diffy, diffz) = (diffTranslation.x,diffTranslation.y,diffTranslation.z)
+        let diffxyz = pow((pow(diffx, 2) +
+                            pow(diffy, 2) +
+                            pow(diffz, 2)), 0.5)
+//        let diffxz = pow((pow(diffx, 2) +
+//                        pow(diffz, 2)), 0.5)
+        let tanTheta = diffx/diffz
+        var thetaOffset = 0.0
+        if diffz < 0 { thetaOffset = .pi }
         
-        let translation = planeTestResult.worldTransform.translation
+    
+        
+        let theta = Float(thetaOffset) + atan(tanTheta)
+        
         
         
         switch recognizer.state {
             case .began:
-                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
-                    print("touch existing ball")
-                } else {
-                    
-                    let ball = SCNCylinder(radius: 0.008, height: 0.05)
-                    let material = SCNMaterial()
-                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
-                    ball.materials = [material]
-                    let ballNode = SCNNode(geometry: ball)
-                    ballNode.name = "Ball"
-                    ballNode.eulerAngles.x = -.pi/2
-                    ballNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
-                    
-                    let ballCore = SCNCylinder(radius: 0.005, height: 0.03)
-                    let ballCoreMaterial = SCNMaterial()
-                    ballCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 1)
-                    ballCore.materials = [ballCoreMaterial]
-                    let ballCoreNode = SCNNode(geometry: ballCore)
-                    ballCoreNode.name = "BallCore"
-                    ballCoreNode.position = SCNVector3Make(0, 0.01, 0)
-                    ballNode.addChildNode(ballCoreNode)
-                    
-                    sceneView.scene.rootNode.addChildNode(ballNode)
-                    
-                    
-                    
-                }
+                previousTranslation = currentTranslation
+                let firecracker = getFirecrackerNode()
+                firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
+                sceneView.scene.rootNode.addChildNode(firecracker)
+                
             break
             
             case .changed:
-                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
-                    print("touch existing ball")
-                } else {
-                    
-                    let ball = SCNCylinder(radius: 0.008, height: 0.05)
-                    let material = SCNMaterial()
-                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
-                    ball.materials = [material]
-                    let ballNode = SCNNode(geometry: ball)
-                    ballNode.name = "Ball"
-                    ballNode.eulerAngles.x = -.pi/2
-                    ballNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
-                    
-                    let ballCore = SCNCylinder(radius: 0.005, height: 0.03)
-                    let ballCoreMaterial = SCNMaterial()
-                    ballCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 1)
-                    ballCore.materials = [ballCoreMaterial]
-                    let ballCoreNode = SCNNode(geometry: ballCore)
-                    ballCoreNode.name = "BallCore"
-                    ballCoreNode.position = SCNVector3Make(0, 0.01, 0)
-                    ballNode.addChildNode(ballCoreNode)
-                    
-                    sceneView.scene.rootNode.addChildNode(ballNode)
-                    
-                    
-                    
+                if diffxyz > 0.03 {
+                    previousTranslation = currentTranslation
+                    let firecracker = getFirecrackerNode()
+                    firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
+                    firecracker.eulerAngles.y = theta
+                    sceneView.scene.rootNode.addChildNode(firecracker)
                 }
             break
             case .ended:
-                if nodeTestResult.name == "Ball" || nodeTestResult.name == "BallCore" {
-                    print("touch existing ball")
-                } else {
-                    
-                    let box = SCNCylinder(radius: 0.015, height: 0.05)
-                    let material = SCNMaterial()
-                    material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
-                    box.materials = [material]
-                    let boxNode = SCNNode(geometry: box)
-                    boxNode.name = "Ball"
-                    boxNode.position = SCNVector3Make(translation.x, translation.y, translation.z)
-                    let boxCore = SCNCylinder(radius: 0.01, height: 0.05)
-                    let boxCoreMaterial = SCNMaterial()
-                    boxCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.6, blue: 0.6, alpha: 1)
-                    boxCore.materials = [boxCoreMaterial]
-                    let boxCoreNode = SCNNode(geometry: boxCore)
-                    boxCoreNode.name = "BallCore"
-                    boxCoreNode.position = SCNVector3Make(0, 0.01, 0)
-                    boxNode.addChildNode(boxCoreNode)
-                    
-                    sceneView.scene.rootNode.addChildNode(boxNode)
-                    
-                    
-                    
-                }
+                previousTranslation = float3(0.0,0.0,0.0)
+                let firecrackerBox = getFirecrackerBoxNode()
+                firecrackerBox.position = SCNVector3Make(currentTranslation.x, currentTranslation.y, currentTranslation.z)
+                sceneView.scene.rootNode.addChildNode(firecrackerBox)
             break
             default: break
         }
@@ -176,6 +129,65 @@ class ViewController: UIViewController {
         
         
         
+    }
+    
+    func getFirecrackerBoxNode() -> SCNNode {
+        let box = SCNCylinder(radius: 0.03, height: 0.02)
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+        box.materials = [material]
+        let boxNode = SCNNode(geometry: box)
+        boxNode.name = "Ball"
+        let boxCore = SCNCylinder(radius: 0.02, height: 0.01)
+        let boxCoreMaterial = SCNMaterial()
+        boxCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.6, blue: 0.6, alpha: 1)
+        boxCore.materials = [boxCoreMaterial]
+        let boxCoreNode = SCNNode(geometry: boxCore)
+        boxCoreNode.name = "BallCore"
+        boxCoreNode.position = SCNVector3Make(0, 0.01, 0)
+        boxNode.addChildNode(boxCoreNode)
+        
+        return boxNode
+    }
+    
+    func getFirecrackerNode() -> SCNNode {
+        
+        let purpleImage = UIImage(named:"purple_firecracker.jpg")
+        let blueImage = UIImage(named:"blue_firecracker.jpg")
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+        
+        
+        let firecracker = SCNCylinder(radius: 0.015, height: 0.009)
+        firecracker.materials = [material]
+        let firecrackerNode = SCNNode(geometry: firecracker)
+        firecrackerNode.name = "firecracker"
+        
+        let firecrackerLeft = SCNCylinder(radius: 0.005, height: 0.03)
+        let firecrackerLeftMaterial = SCNMaterial()
+        firecrackerLeftMaterial.diffuse.contents = purpleImage
+        firecrackerLeft.materials = [firecrackerLeftMaterial]
+        let firecrackerLeftNode = SCNNode(geometry: firecrackerLeft)
+        firecrackerLeftNode.name = "firecrackerLeft"
+        firecrackerLeftNode.position = SCNVector3Make(-0.015, 0.0025, 0)
+        firecrackerLeftNode.eulerAngles.x = -.pi/3
+        firecrackerLeftNode.eulerAngles.z = .pi/2
+        
+        firecrackerNode.addChildNode(firecrackerLeftNode)
+        
+        let firecrackerRight = SCNCylinder(radius: 0.005, height: 0.03)
+        let firecrackerRightMaterial = SCNMaterial()
+        firecrackerRightMaterial.diffuse.contents = blueImage
+        firecrackerRight.materials = [firecrackerRightMaterial]
+        let firecrackerRightNode = SCNNode(geometry: firecrackerRight)
+        firecrackerRightNode.name = "firecrackerRight"
+        firecrackerRightNode.position = SCNVector3Make(0.015, 0.0025, 0)
+        firecrackerRightNode.eulerAngles.x = -.pi/3
+        firecrackerRightNode.eulerAngles.z = -.pi/2
+        
+        firecrackerNode.addChildNode(firecrackerRightNode)
+        
+        return firecrackerNode
     }
     
     @objc func handleTap(sender recognizer: UIGestureRecognizer) {
