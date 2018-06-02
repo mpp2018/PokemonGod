@@ -18,6 +18,8 @@
 		9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */; };
 		9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */; };
 		9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */; };
+		9A66FC6020C300B600FFAF65 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5E20C300B600FFAF65 /* spark.png */; };
+		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gray_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue_firecracker.jpg; sourceTree = "<group>"; };
+		9A66FC5E20C300B600FFAF65 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 				9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */,
 				9A1FE1D520C0E7B900D32095 /* ViewController.swift */,
 				9A1FE1D720C0E7B900D32095 /* Main.storyboard */,
+				9A66FC5D20C3002300FFAF65 /* Particles */,
 				9A1FE1F520C1A83E00D32095 /* Models */,
 				9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */,
 				9A1FE1DF20C0E7BA00D32095 /* LaunchScreen.storyboard */,
@@ -88,6 +93,15 @@
 				9A1FE1ED20C1A83500D32095 /* purple_firecracker.jpg */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9A66FC5D20C3002300FFAF65 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				9A66FC5E20C300B600FFAF65 /* spark.png */,
+				9A66FC5F20C300B600FFAF65 /* fire.scnp */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1FE1E120C0E7BA00D32095 /* LaunchScreen.storyboard in Resources */,
+				9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */,
+				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
 				9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */,
 				9A1FE1E920C1A64000D32095 /* firecracker.scn in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
