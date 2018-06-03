@@ -13,11 +13,17 @@ class ViewController: UIViewController {
     private var planeColor:UIColor!
     private var firecrackers:[SCNNode] = []
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
+    private var planeButton = UIButton()
+    private var explodeButton = UIButton()
+    private var stopButton = UIButton()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         previousTranslation = float3(0.0,0.0,0.0)
         setupScene()
+        setupButtons()
         
         
         
@@ -37,7 +43,66 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func setupButtons() {
+        // explodeBuddon setup
+        explodeButton.setTitle("explode", for: .normal)
+        explodeButton.setTitleColor(.white, for: .normal)
+        explodeButton.backgroundColor = UIColor(red: 197/255,
+                                                green: 10/255,
+                                                blue: 60/255,
+                                                alpha: 0.8)
+        explodeButton.frame.size = CGSize(width: 80, height: 40)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        explodeButton.layer.cornerRadius = 10
+        explodeButton.isEnabled = true
+        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        
+        // planeButton setup
+        planeButton.setTitle("Display Plane", for: .normal)
+        planeButton.setTitleColor(.white, for: .normal)
+        planeButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        planeButton.frame.size = CGSize(width: 80, height: 40)
+        planeButton.center = CGPoint(x: explodeButton.center.x - 100,
+                                     y: explodeButton.center.y)
+        planeButton.layer.cornerRadius = 10
+        planeButton.isEnabled = true
+        planeButton.addTarget(self, action: #selector(planeButtonDidClick(_:)), for: .touchUpInside)
+        
+        // stopButton setup
+        stopButton.setTitle("Stop", for: .normal)
+        stopButton.setTitleColor(UIColor.white, for: .normal)
+        stopButton.isEnabled = true
+        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        stopButton.layer.cornerRadius = 10;
+        stopButton.addTarget(
+            self,
+            action: #selector(ViewController.stopButtonDidClick),
+            for: .touchUpInside)
+        stopButton.frame.size.height = 40
+        stopButton.frame.size.width = 80
+        stopButton.center = CGPoint(
+            x: explodeButton.center.x + 100,
+            y: explodeButton.center.y)
+        
+        
+        self.view.addSubview(explodeButton)
+        self.view.addSubview(planeButton)
+        self.view.addSubview(stopButton)
+        
+    }
+    
+    @objc func planeButtonDidClick(_ sender: Any) {
+    }
+    
+    @objc func explodeButtonDidClick(_ sender: Any) {
+        
+    }
+    
+    @objc func stopButtonDidClick(_ sender:Any) {
+        
+    }
+    
     func setupScene() {
         sceneView = ARSCNView(frame: self.view.bounds)
         sceneView.showsStatistics = true
