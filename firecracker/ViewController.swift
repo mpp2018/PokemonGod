@@ -256,11 +256,13 @@ class ViewController: UIViewController {
         
         let purpleImage = UIImage(named:"purple_firecracker.jpg")
         let blueImage = UIImage(named:"blue_firecracker.jpg")
+        let grayImage = UIImage(named:"gray_firecracker.jpg")
+        let redImage = UIImage(named:"red_firecracker.jpg")
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
         
         
-        let firecracker = SCNCylinder(radius: 0.015, height: 0.009)
+        let firecracker = SCNSphere(radius: 0.03)
         firecracker.materials = [material]
         let firecrackerNode = SCNNode(geometry: firecracker)
         firecrackerNode.name = "firecracker"
@@ -288,6 +290,30 @@ class ViewController: UIViewController {
         firecrackerRightNode.eulerAngles.z = -.pi/2
         
         firecrackerNode.addChildNode(firecrackerRightNode)
+        
+        let firecrackerTop = SCNCylinder(radius: 0.005, height: 0.03)
+        let firecrackerTopMaterial = SCNMaterial()
+        firecrackerTopMaterial.diffuse.contents = grayImage
+        firecrackerTop.materials = [firecrackerTopMaterial]
+        let firecrackerTopNode = SCNNode(geometry: firecrackerTop)
+        firecrackerTopNode.name = "firecrackerTop"
+        firecrackerTopNode.position = SCNVector3Make(-0.015, 0.0025, 0)
+        firecrackerTopNode.eulerAngles.x = -.pi/3
+        firecrackerTopNode.eulerAngles.z = .pi/2
+        firecrackerTopNode.transform = SCNMatrix4Rotate(firecrackerTopNode.transform, .pi/2, 0, 0, 1)
+        firecrackerNode.addChildNode(firecrackerTopNode)
+        
+        let firecrackerBottom = SCNCylinder(radius: 0.005, height: 0.03)
+        let firecrackerBottomMaterial = SCNMaterial()
+        firecrackerBottomMaterial.diffuse.contents = redImage
+        firecrackerBottom.materials = [firecrackerBottomMaterial]
+        let firecrackerBottomNode = SCNNode(geometry: firecrackerBottom)
+        firecrackerBottomNode.name = "firecrackerBottom"
+        firecrackerBottomNode.position = SCNVector3Make(0.015, 0.0025, 0)
+        firecrackerBottomNode.eulerAngles.x = -.pi/3
+        firecrackerBottomNode.eulerAngles.z = -.pi/2
+        firecrackerBottomNode.transform = SCNMatrix4Rotate(firecrackerBottomNode.transform, .pi/2, 0, 0, 1)
+        firecrackerNode.addChildNode(firecrackerBottomNode)
         
         // raywenderlich
         let color = UIColor.white
