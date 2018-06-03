@@ -12,7 +12,9 @@ class ViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
     private var firecrackers:[SCNNode] = []
+    private var planes:[SCNNode] = []
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
+    private var planeToggle = UISwitch()
     private var planeButton = UIButton()
     private var explodeButton = UIButton()
     private var stopButton = UIButton()
@@ -48,15 +50,25 @@ class ViewController: UIViewController {
         // explodeBuddon setup
         explodeButton.setTitle("Explode", for: .normal)
         explodeButton.setTitleColor(.white, for: .normal)
-        explodeButton.backgroundColor = UIColor(red: 197/255,
-                                                green: 10/255,
-                                                blue: 60/255,
-                                                alpha: 0.8)
+        explodeButton.backgroundColor = UIColor(red: 207/255,
+                                                green: 30/255,
+                                                blue: 80/255,
+                                                alpha: 0.6)
         explodeButton.frame.size = CGSize(width: 80, height: 40)
         explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         explodeButton.layer.cornerRadius = 10
         explodeButton.isEnabled = true
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        
+        // planeToggle setup
+        planeToggle = UISwitch()
+        planeToggle.isOn = true
+        planeToggle.tintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.onTintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.frame.size = CGSize(width: 80, height: 40)
+        planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
+                                y: explodeButton.center.y)
+        planeToggle.addTarget(self, action: #selector(planeButtonDidClick(_:)), for: .valueChanged)
         
         // planeButton setup
         planeButton.setTitle("Hide Plane", for: .normal)
@@ -192,7 +204,7 @@ class ViewController: UIViewController {
             break
             
             case .changed:
-                if diffxyz > 0.03 {
+                if diffxyz > 0.02 {
                     previousTranslation = currentTranslation
                     let firecracker = getFirecrackerNode()
                     firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
@@ -303,6 +315,22 @@ class ViewController: UIViewController {
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
     
+    func changePlaneColor() {
+        if (planeButton.title(for: .normal) == "Hide Plane" || !planeToggle.isOn) {
+            planeButton.setTitle("Show Plane", for: .normal)
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
+            planeToggle.isOn = false
+        } else {
+            planeButton.setTitle("Hide Plane", for: .normal)
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+            planeToggle.isOn = true
+        }
+        for node in planes {
+            node.geometry?.materials.first?.diffuse.contents = planeColor
+        }
+        
+    }
+    
     @objc func firecrackerExplode() {
         
         guard !firecrackers.isEmpty else {
@@ -365,6 +393,7 @@ extension ViewController: ARSCNViewDelegate {
         planeNode.name = "plane"
         planeNode.position = position
         planeNode.eulerAngles.x = -.pi/2
+        planes.append(planeNode)
         node.addChildNode(planeNode)
     }
     
