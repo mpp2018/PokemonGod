@@ -187,6 +187,11 @@ class ViewController: UIViewController {
         
         firecrackerNode.addChildNode(firecrackerRightNode)
         
+        // raywenderlich
+        let color = UIColor.white
+        let emitterGeo = SCNCylinder(radius: 0.001, height: 0.001)
+        let trailEmitter = createFire(color: color, geometry:emitterGeo)
+        firecrackerNode.addParticleSystem(trailEmitter)
         return firecrackerNode
     }
     
@@ -208,6 +213,14 @@ class ViewController: UIViewController {
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
     
+    func createFire(color: UIColor, geometry: SCNGeometry) ->
+        SCNParticleSystem {
+            
+            let fire = SCNParticleSystem(named: "Explode.scnp", inDirectory: nil)!
+            fire.particleColor = color
+            fire.emitterShape = geometry
+            return fire
+    }
 }
 
 
