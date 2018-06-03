@@ -160,10 +160,7 @@ class ViewController: UIViewController {
         
         let tapLocation = recognizer.location(in: sceneView)
         let planeTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
-        let nodeTestResults = sceneView.hitTest(tapLocation)
-        
         guard let planeTestResult = planeTestResults.first else { return }
-        guard let nodeTestResult = nodeTestResults.first?.node else { return }
         let currentTranslation = planeTestResult.worldTransform.translation
         let diffTranslation = (currentTranslation - previousTranslation)
         let (diffx, diffy, diffz) = (diffTranslation.x,diffTranslation.y,diffTranslation.z)
@@ -185,11 +182,10 @@ class ViewController: UIViewController {
         switch recognizer.state {
             case .began:
                 previousTranslation = currentTranslation
-                let firecracker = getFirecrackerNode()
-                firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
-                sceneView.scene.rootNode.addChildNode(firecracker)
-                firecrackers.append(firecracker)
-                
+//                let firecracker = getFirecrackerNode()
+//                firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
+//                sceneView.scene.rootNode.addChildNode(firecracker)
+//                firecrackers.append(firecracker)
             break
             
             case .changed:
@@ -305,10 +301,10 @@ class ViewController: UIViewController {
         firecrackerNode.addChildNode(firecrackerBottomNode)
         
         // raywenderlich
-        let color = UIColor.white
-        let emitterGeo = SCNCylinder(radius: 0.001, height: 0.001)
-        let trailEmitter = createFire(color: color, geometry:emitterGeo)
-        firecrackerNode.addParticleSystem(trailEmitter)
+//        let color = UIColor.white
+//        let emitterGeo = SCNSphere(radius: 0.0001)
+//        let trailEmitter = createFire(color: color, geometry:emitterGeo)
+//        firecrackerNode.addParticleSystem(trailEmitter)
         return firecrackerNode
     }
     
