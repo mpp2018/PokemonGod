@@ -22,6 +22,7 @@
 		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
 		9AA944C120C306380003E31D /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C020C306380003E31D /* Explode.scnp */; };
 		9AA944C320C306530003E31D /* CircleParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C220C306530003E31D /* CircleParticle.png */; };
+		9AC4BE5C20C44D8300259387 /* firebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC4BE5B20C44D8200259387 /* firebox.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
 		9AA944C020C306380003E31D /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
 		9AA944C220C306530003E31D /* CircleParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CircleParticle.png; sourceTree = "<group>"; };
+		9AC4BE5B20C44D8200259387 /* firebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firebox.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1FE1E820C1A64000D32095 /* firecracker.scn */,
+				9AC4BE5B20C44D8200259387 /* firebox.png */,
 				9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */,
 				9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */,
 				9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */,
@@ -176,6 +179,7 @@
 				9A1FE1E920C1A64000D32095 /* firecracker.scn in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
+				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,

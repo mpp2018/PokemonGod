@@ -218,7 +218,7 @@ class ViewController: UIViewController {
     }
     
     func getFirecrackerBoxNode() -> SCNNode {
-        let box = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.006)
+        let box = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.002)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
         box.materials = [material]
@@ -226,7 +226,7 @@ class ViewController: UIViewController {
         boxNode.name = "Ball"
         let boxCore = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.003)
         let boxCoreMaterial = SCNMaterial()
-        boxCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.6, blue: 0.6, alpha: 1)
+        boxCoreMaterial.diffuse.contents =  UIImage(named:"firebox.png")
         boxCore.materials = [boxCoreMaterial]
         let boxCoreNode = SCNNode(geometry: boxCore)
         boxCoreNode.name = "BallCore"
