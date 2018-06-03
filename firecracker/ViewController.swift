@@ -99,29 +99,18 @@ class ViewController: UIViewController {
         
         
         self.view.addSubview(explodeButton)
-        self.view.addSubview(planeButton)
         self.view.addSubview(stopButton)
+//        self.view.addSubview(planeButton)
+        self.view.addSubview(planeToggle)
         
     }
     
+    @objc func planeToggleDidClick(_ sender: Any) {
+        changePlaneColor()
+    }
+    
     @objc func planeButtonDidClick(_ sender: Any) {
-        if planeButton.title(for: .normal) == "Hide Plane" {
-            planeButton.setTitle("Show Plane", for: .normal)
-            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
-            for node in sceneView.scene.rootNode.childNodes {
-                if node.name == "Plane" {
-                    node.geometry?.materials.first?.diffuse.contents = planeColor
-                }
-            }
-        } else {
-            planeButton.setTitle("Hide Plane", for: .normal)
-            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
-            for node in sceneView.scene.rootNode.childNodes {
-                if node.name == "Plane" {
-                    node.geometry?.materials.first?.diffuse.contents = planeColor
-                }
-            }
-        }
+       changePlaneColor()
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
