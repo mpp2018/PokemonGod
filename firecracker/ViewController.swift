@@ -367,6 +367,9 @@ extension ViewController: ARSCNViewDelegate {
         planeNode.position = SCNVector3(x, y, z)
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+    }
+
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
     }
