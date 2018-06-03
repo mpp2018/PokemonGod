@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     
     func setupButtons() {
         // explodeBuddon setup
-        explodeButton.setTitle("explode", for: .normal)
+        explodeButton.setTitle("Explode", for: .normal)
         explodeButton.setTitleColor(.white, for: .normal)
         explodeButton.backgroundColor = UIColor(red: 197/255,
                                                 green: 10/255,
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
-        
+        firecrackerExplode()
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
@@ -281,6 +281,20 @@ class ViewController: UIViewController {
         
         sceneView.scene.rootNode.addChildNode(ballNode)
     }
+    
+    @objc func firecrackerExplode() {
+        
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        
+        let firecracker = firecrackers.removeFirst()
+        firecracker.removeFromParentNode()
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(firecrackerExplode), userInfo: nil, repeats: false)
+
+        
+    }
+    
     
     func createFire(color: UIColor, geometry: SCNGeometry) ->
         SCNParticleSystem {
