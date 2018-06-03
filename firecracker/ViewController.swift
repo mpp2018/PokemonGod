@@ -172,12 +172,12 @@ class ViewController: UIViewController {
         let tanTheta = diffx/diffz
         var thetaOffset = 0.0
         if diffz < 0 { thetaOffset = .pi }
-        
-    
-        
         let theta = Float(thetaOffset) + atan(tanTheta)
         
-        
+        let line = getLineNode()
+        line.transform = SCNMatrix4Rotate(line.transform, theta, 0, 1, 0)
+        line.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
+        sceneView.scene.rootNode.addChildNode(line)
         
         switch recognizer.state {
             case .began:
@@ -235,6 +235,18 @@ class ViewController: UIViewController {
         boxNode.addChildNode(boxCoreNode)
         
         return boxNode
+    }
+    func getLineNode() -> SCNNode {
+       
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.init(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        let line = SCNCylinder(radius: 0.001, height: 0.004)
+        line.materials = [material]
+        let lineNode = SCNNode(geometry: line)
+        lineNode.eulerAngles.x = -.pi/2
+        lineNode.name = "line"
+        
+        return lineNode
     }
     
     func getFirecrackerNode() -> SCNNode {
