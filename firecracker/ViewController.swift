@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
+    private var firecrackers:[SCNNode] = []
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +105,7 @@ class ViewController: UIViewController {
                 let firecracker = getFirecrackerNode()
                 firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
                 sceneView.scene.rootNode.addChildNode(firecracker)
+                firecrackers.append(firecracker)
                 
             break
             
@@ -114,6 +116,7 @@ class ViewController: UIViewController {
                     firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
                     firecracker.eulerAngles.y = theta
                     sceneView.scene.rootNode.addChildNode(firecracker)
+                    firecrackers.append(firecracker)
                 }
             break
             case .ended:
@@ -121,6 +124,7 @@ class ViewController: UIViewController {
                 let firecrackerBox = getFirecrackerBoxNode()
                 firecrackerBox.position = SCNVector3Make(currentTranslation.x, currentTranslation.y, currentTranslation.z)
                 sceneView.scene.rootNode.addChildNode(firecrackerBox)
+                firecrackers.append(firecrackerBox)
             break
             default: break
         }
