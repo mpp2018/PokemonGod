@@ -204,9 +204,12 @@ class ViewController: UIViewController {
             case .ended:
                 previousTranslation = float3(0.0,0.0,0.0)
                 let firecrackerBox = getFirecrackerBoxNode()
-                firecrackerBox.position = SCNVector3Make(currentTranslation.x, currentTranslation.y, currentTranslation.z)
+                let offsetx = (diffx/diffxyz) * 0.06
+                let offsetz = (diffz/diffxyz) * 0.06
+                firecrackerBox.position = SCNVector3Make(currentTranslation.x + offsetx, currentTranslation.y, currentTranslation.z + offsetz)
+                firecrackerBox.eulerAngles.y = theta
                 sceneView.scene.rootNode.addChildNode(firecrackerBox)
-                firecrackers.append(firecrackerBox)
+//                firecrackers.append(firecrackerBox)
             break
             default: break
         }
@@ -218,7 +221,6 @@ class ViewController: UIViewController {
     }
     
     func getFirecrackerBoxNode() -> SCNNode {
-        let box = SCNCylinder(radius: 0.03, height: 0.02)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
         box.materials = [material]
