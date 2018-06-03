@@ -339,12 +339,10 @@ extension ViewController: ARSCNViewDelegate {
         let position = SCNVector3(planeAnchor.center.x,
                                 planeAnchor.center.y,
                                 planeAnchor.center.z)
-
+        planeNode.name = "plane"
         planeNode.position = position
         planeNode.eulerAngles.x = -.pi/2
         node.addChildNode(planeNode)
-
-        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
@@ -364,6 +362,7 @@ extension ViewController: ARSCNViewDelegate {
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
+        planeNode.name = "plane"
         planeNode.position = SCNVector3(x, y, z)
     }
     
