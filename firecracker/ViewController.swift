@@ -221,18 +221,20 @@ class ViewController: UIViewController {
     }
     
     func getFirecrackerBoxNode() -> SCNNode {
+        let box = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.006)
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
         box.materials = [material]
         let boxNode = SCNNode(geometry: box)
         boxNode.name = "Ball"
-        let boxCore = SCNCylinder(radius: 0.02, height: 0.01)
+        let boxCore = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.003)
         let boxCoreMaterial = SCNMaterial()
         boxCoreMaterial.diffuse.contents = UIColor.init(red: 1, green: 0.6, blue: 0.6, alpha: 1)
         boxCore.materials = [boxCoreMaterial]
         let boxCoreNode = SCNNode(geometry: boxCore)
         boxCoreNode.name = "BallCore"
         boxCoreNode.position = SCNVector3Make(0, 0.01, 0)
+        boxCoreNode.eulerAngles.y = -.pi/4
         boxNode.addChildNode(boxCoreNode)
         
         return boxNode
