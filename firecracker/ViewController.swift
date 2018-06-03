@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
         
         // planeButton setup
-        planeButton.setTitle("Display Plane", for: .normal)
+        planeButton.setTitle("Hide Plane", for: .normal)
         planeButton.setTitleColor(.white, for: .normal)
         planeButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
         planeButton.frame.size = CGSize(width: 80, height: 40)
@@ -93,6 +93,23 @@ class ViewController: UIViewController {
     }
     
     @objc func planeButtonDidClick(_ sender: Any) {
+        if planeButton.title(for: .normal) == "Hide Plane" {
+            planeButton.setTitle("Show Plane", for: .normal)
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
+            for node in sceneView.scene.rootNode.childNodes {
+                if node.name == "Plane" {
+                    node.geometry?.materials.first?.diffuse.contents = planeColor
+                }
+            }
+        } else {
+            planeButton.setTitle("Hide Plane", for: .normal)
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
+            for node in sceneView.scene.rootNode.childNodes {
+                if node.name == "Plane" {
+                    node.geometry?.materials.first?.diffuse.contents = planeColor
+                }
+            }
+        }
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
