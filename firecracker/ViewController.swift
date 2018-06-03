@@ -325,6 +325,25 @@ class ViewController: UIViewController {
             fire.emitterShape = geometry
             return fire
     }
+    
+    func createExplosion(geometry: SCNGeometry, position: SCNVector3,
+                         rotation: SCNVector4) {
+        let explosion =
+            SCNParticleSystem(named: "Explode.scnp", inDirectory:
+                nil)!
+        explosion.emitterShape = geometry
+        explosion.birthLocation = .surface
+        // 3
+        let rotationMatrix = SCNMatrix4MakeRotation(rotation.w, rotation.x,
+                                   rotation.y, rotation.z)
+        let translationMatrix =
+            SCNMatrix4MakeTranslation(position.x, position.y,
+                                      position.z)
+        let transformMatrix =
+            SCNMatrix4Mult(rotationMatrix, translationMatrix)
+        // 4
+//        scnScene.addParticleSystem(explosion, transform: transformMatrix)
+    }
 }
 
 
