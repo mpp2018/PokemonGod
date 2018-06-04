@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
     private var firecrackers:[SCNNode] = []
+    private var firecrackerSetNode = SCNNode()
     private var planes:[SCNNode] = []
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
     private var planeToggle = UISwitch()
@@ -182,7 +183,7 @@ class ViewController: UIViewController {
         switch recognizer.state {
             case .began:
                 previousTranslation = currentTranslation
-//                let firecracker = getFirecrackerNode()
+//                let firecracker = getfirecrackerSetNode()
 //                firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
 //                sceneView.scene.rootNode.addChildNode(firecracker)
 //                firecrackers.append(firecracker)
@@ -191,7 +192,7 @@ class ViewController: UIViewController {
             case .changed:
                 if diffxyz > 0.02 {
                     previousTranslation = currentTranslation
-                    let firecracker = getFirecrackerNode()
+                    let firecracker = getfirecrackerSetNode()
                     firecracker.position = SCNVector3(x: currentTranslation.x, y: currentTranslation.y, z: currentTranslation.z)
                     firecracker.eulerAngles.y = theta
                     sceneView.scene.rootNode.addChildNode(firecracker)
@@ -249,75 +250,80 @@ class ViewController: UIViewController {
         return lineNode
     }
     
-    func getFirecrackerNode() -> SCNNode {
+    func getfirecrackerSetNode() -> SCNNode {
+        if firecrackerSetNode.name != "firecrackerSet" {
+            createFirecrackerSetNode()
+        } else {
+            firecrackerSetNode = firecrackerSetNode.clone()
+        }
         
-        let purpleImage = UIImage(named:"purple_firecracker.jpg")
-        let blueImage = UIImage(named:"blue_firecracker.jpg")
-        let grayImage = UIImage(named:"gray_firecracker.jpg")
-        let redImage = UIImage(named:"red_firecracker.jpg")
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
-        
-        
-        let firecracker = SCNSphere(radius: 0.03)
-        firecracker.materials = [material]
-        let firecrackerNode = SCNNode(geometry: firecracker)
-        firecrackerNode.name = "firecracker"
-        
-        let firecrackerLeft = SCNCylinder(radius: 0.005, height: 0.03)
-        let firecrackerLeftMaterial = SCNMaterial()
-        firecrackerLeftMaterial.diffuse.contents = purpleImage
-        firecrackerLeft.materials = [firecrackerLeftMaterial]
-        let firecrackerLeftNode = SCNNode(geometry: firecrackerLeft)
-        firecrackerLeftNode.name = "firecrackerLeft"
-        firecrackerLeftNode.position = SCNVector3Make(-0.015, 0.0025, 0)
-        firecrackerLeftNode.eulerAngles.x = -.pi/3
-        firecrackerLeftNode.eulerAngles.z = .pi/2
-        
-        firecrackerNode.addChildNode(firecrackerLeftNode)
-        
-        let firecrackerRight = SCNCylinder(radius: 0.005, height: 0.03)
-        let firecrackerRightMaterial = SCNMaterial()
-        firecrackerRightMaterial.diffuse.contents = blueImage
-        firecrackerRight.materials = [firecrackerRightMaterial]
-        let firecrackerRightNode = SCNNode(geometry: firecrackerRight)
-        firecrackerRightNode.name = "firecrackerRight"
-        firecrackerRightNode.position = SCNVector3Make(0.015, 0.0025, 0)
-        firecrackerRightNode.eulerAngles.x = -.pi/3
-        firecrackerRightNode.eulerAngles.z = -.pi/2
-        
-        firecrackerNode.addChildNode(firecrackerRightNode)
-        
-        let firecrackerTop = SCNCylinder(radius: 0.005, height: 0.03)
-        let firecrackerTopMaterial = SCNMaterial()
-        firecrackerTopMaterial.diffuse.contents = grayImage
-        firecrackerTop.materials = [firecrackerTopMaterial]
-        let firecrackerTopNode = SCNNode(geometry: firecrackerTop)
-        firecrackerTopNode.name = "firecrackerTop"
-        firecrackerTopNode.position = SCNVector3Make(-0.015, 0.0025, 0)
-        firecrackerTopNode.eulerAngles.x = -.pi/3
-        firecrackerTopNode.eulerAngles.z = .pi/2
-        firecrackerTopNode.transform = SCNMatrix4Rotate(firecrackerTopNode.transform, .pi/2, 0, 0, 1)
-        firecrackerNode.addChildNode(firecrackerTopNode)
-        
-        let firecrackerBottom = SCNCylinder(radius: 0.005, height: 0.03)
-        let firecrackerBottomMaterial = SCNMaterial()
-        firecrackerBottomMaterial.diffuse.contents = redImage
-        firecrackerBottom.materials = [firecrackerBottomMaterial]
-        let firecrackerBottomNode = SCNNode(geometry: firecrackerBottom)
-        firecrackerBottomNode.name = "firecrackerBottom"
-        firecrackerBottomNode.position = SCNVector3Make(0.015, 0.0025, 0)
-        firecrackerBottomNode.eulerAngles.x = -.pi/3
-        firecrackerBottomNode.eulerAngles.z = -.pi/2
-        firecrackerBottomNode.transform = SCNMatrix4Rotate(firecrackerBottomNode.transform, .pi/2, 0, 0, 1)
-        firecrackerNode.addChildNode(firecrackerBottomNode)
-        
-        // raywenderlich
-//        let color = UIColor.white
-//        let emitterGeo = SCNSphere(radius: 0.0001)
-//        let trailEmitter = createFire(color: color, geometry:emitterGeo)
-//        firecrackerNode.addParticleSystem(trailEmitter)
-        return firecrackerNode
+        return firecrackerSetNode
+    }
+    
+    func createFirecrackerSetNode() {
+        if firecrackerSetNode.name != "firecrackerSet" {
+            let purpleImage = UIImage(named:"purple_firecracker.jpg")
+            let blueImage = UIImage(named:"blue_firecracker.jpg")
+            let grayImage = UIImage(named:"gray_firecracker.jpg")
+            let redImage = UIImage(named:"red_firecracker.jpg")
+            let material = SCNMaterial()
+            material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
+            
+            
+            let firecracker = SCNSphere(radius: 0.03)
+            firecracker.materials = [material]
+            firecrackerSetNode = SCNNode(geometry: firecracker)
+            firecrackerSetNode.name = "firecracker"
+            
+            let firecrackerLeft = SCNCylinder(radius: 0.005, height: 0.03)
+            let firecrackerLeftMaterial = SCNMaterial()
+            firecrackerLeftMaterial.diffuse.contents = purpleImage
+            firecrackerLeft.materials = [firecrackerLeftMaterial]
+            let firecrackerLeftNode = SCNNode(geometry: firecrackerLeft)
+            firecrackerLeftNode.name = "firecrackerLeft"
+            firecrackerLeftNode.position = SCNVector3Make(-0.015, 0.0025, 0)
+            firecrackerLeftNode.eulerAngles.x = -.pi/3
+            firecrackerLeftNode.eulerAngles.z = .pi/2
+            
+            firecrackerSetNode.addChildNode(firecrackerLeftNode)
+            
+            let firecrackerRight = SCNCylinder(radius: 0.005, height: 0.03)
+            let firecrackerRightMaterial = SCNMaterial()
+            firecrackerRightMaterial.diffuse.contents = blueImage
+            firecrackerRight.materials = [firecrackerRightMaterial]
+            let firecrackerRightNode = SCNNode(geometry: firecrackerRight)
+            firecrackerRightNode.name = "firecrackerRight"
+            firecrackerRightNode.position = SCNVector3Make(0.015, 0.0025, 0)
+            firecrackerRightNode.eulerAngles.x = -.pi/3
+            firecrackerRightNode.eulerAngles.z = -.pi/2
+            
+            firecrackerSetNode.addChildNode(firecrackerRightNode)
+            
+            let firecrackerTop = SCNCylinder(radius: 0.005, height: 0.03)
+            let firecrackerTopMaterial = SCNMaterial()
+            firecrackerTopMaterial.diffuse.contents = grayImage
+            firecrackerTop.materials = [firecrackerTopMaterial]
+            let firecrackerTopNode = SCNNode(geometry: firecrackerTop)
+            firecrackerTopNode.name = "firecrackerTop"
+            firecrackerTopNode.position = SCNVector3Make(-0.015, 0.0025, 0)
+            firecrackerTopNode.eulerAngles.x = -.pi/3
+            firecrackerTopNode.eulerAngles.z = .pi/2
+            firecrackerTopNode.transform = SCNMatrix4Rotate(firecrackerTopNode.transform, .pi/2, 0, 0, 1)
+            firecrackerSetNode.addChildNode(firecrackerTopNode)
+            
+            let firecrackerBottom = SCNCylinder(radius: 0.005, height: 0.03)
+            let firecrackerBottomMaterial = SCNMaterial()
+            firecrackerBottomMaterial.diffuse.contents = redImage
+            firecrackerBottom.materials = [firecrackerBottomMaterial]
+            let firecrackerBottomNode = SCNNode(geometry: firecrackerBottom)
+            firecrackerBottomNode.name = "firecrackerBottom"
+            firecrackerBottomNode.position = SCNVector3Make(0.015, 0.0025, 0)
+            firecrackerBottomNode.eulerAngles.x = -.pi/3
+            firecrackerBottomNode.eulerAngles.z = -.pi/2
+            firecrackerBottomNode.transform = SCNMatrix4Rotate(firecrackerBottomNode.transform, .pi/2, 0, 0, 1)
+            firecrackerSetNode.addChildNode(firecrackerBottomNode)
+            firecrackerSetNode.name = "firecrackerSet"
+        }
     }
     
     @objc func handleTap(sender recognizer: UIGestureRecognizer) {
@@ -418,6 +424,7 @@ extension ViewController: ARSCNViewDelegate {
         planeNode.eulerAngles.x = -.pi/2
         planes.append(planeNode)
         node.addChildNode(planeNode)
+        createFirecrackerSetNode()
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
