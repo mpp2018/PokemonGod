@@ -115,7 +115,40 @@ class ViewController: UIViewController {
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
-        firecrackerExplode()
+        let alert = UIAlertController(title: "🔥Explode Firecrackers🔥", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dispatch", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeDispatch()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dispatch Iterate", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeDispatchIterate()
+        }))
+        alert.addAction(UIAlertAction(title: "Dispatch Recursive", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeDispatchRecursive()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Sleep Recursive", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeSleepRecursive()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Sleep Iterate", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeSleepIterate()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Timer Recursive", style: UIAlertActionStyle.default, handler:{ action in
+            self.firecrackerExplodeTimerRecursive()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+//        firecrackerExplodeDispatchRecursive()
+//        firecrackerExplodeDispatchIterate()
+//        firecrackerExplodeDispatch()
+//        firecrackerExplodeSleepRecursive()
+//        firecrackerExplodeSleepIterate()
+//        firecrackerExplodeTimerRecursive()
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
@@ -254,6 +287,8 @@ class ViewController: UIViewController {
         if firecrackerSetNode.name != "firecrackerSet" {
             createFirecrackerSetNode()
         } else {
+//            firecrackerSetNode = firecrackerSetNode.presentation
+//            firecrackerSetNode = firecrackerSetNode.copy() as! SCNNode
             firecrackerSetNode = firecrackerSetNode.clone()
         }
         
@@ -359,8 +394,8 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    @objc func firecrackerExplode() {
+
+    @objc func firecrackerExplodeTimerRecursive() {
         
         guard !firecrackers.isEmpty else {
             return
@@ -368,11 +403,81 @@ class ViewController: UIViewController {
         
         let firecracker = firecrackers.removeFirst()
         firecracker.removeFromParentNode()
-        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(firecrackerExplode), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(firecrackerExplodeTimerRecursive), userInfo: nil, repeats: false)
 
-        
+    }
+
+    @objc func firecrackerExplodeDispatchRecursive() {
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        let firecracker = firecrackers.removeFirst()
+        firecracker.removeFromParentNode()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.firecrackerExplodeDispatchRecursive()
+        }
     }
     
+    @objc func firecrackerExplodeDispatchIterate() {
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        var num = 1.0
+        for firecracker in firecrackers {
+            num += 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2 * num) {
+                firecracker.removeFromParentNode()
+            }
+        }
+        firecrackers = []
+    }
+   
+    @objc func firecrackerExplodeDispatch() {
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        
+        // 會全部一起消失
+        for firecracker in firecrackers {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                firecracker.removeFromParentNode()
+            }
+        }
+        firecrackers = []
+    }
+    
+    @objc func firecrackerExplodeSleepIterate() {
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        
+        for firecracker in firecrackers {
+            sleep(UInt32(0.2))
+            firecracker.removeFromParentNode()
+        }
+        firecrackers = []
+        
+//        for _ in 1...firecrackers.count {
+//            removeFirecracker()
+//        }
+    }
+    
+    func removeFirecracker() {
+        sleep(UInt32(0.2))
+        let firecracker = firecrackers.removeFirst()
+        firecracker.removeFromParentNode()
+    }
+    
+    @objc func firecrackerExplodeSleepRecursive() {
+        guard !firecrackers.isEmpty else {
+            return
+        }
+        
+        sleep(UInt32(0.2))
+        let firecracker = firecrackers.removeFirst()
+        firecracker.removeFromParentNode()
+        firecrackerExplodeSleepRecursive()
+    }
     
     func createFire(color: UIColor, geometry: SCNGeometry) ->
         SCNParticleSystem {
