@@ -13,7 +13,6 @@
 		9A1FE1DC20C0E7B900D32095 /* firecracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DA20C0E7B900D32095 /* firecracker.xcdatamodeld */; };
 		9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
 		9A1FE1E120C0E7BA00D32095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DF20C0E7BA00D32095 /* LaunchScreen.storyboard */; };
-		9A1FE1E920C1A64000D32095 /* firecracker.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1E820C1A64000D32095 /* firecracker.scn */; };
 		9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1ED20C1A83500D32095 /* purple_firecracker.jpg */; };
 		9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */; };
 		9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */; };
@@ -34,7 +33,6 @@
 		9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A1FE1E020C0E7BA00D32095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A1FE1E220C0E7BA00D32095 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A1FE1E820C1A64000D32095 /* firecracker.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = firecracker.scn; sourceTree = "<group>"; };
 		9A1FE1ED20C1A83500D32095 /* purple_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = purple_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gray_firecracker.jpg; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		9A1FE1F520C1A83E00D32095 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9A1FE1E820C1A64000D32095 /* firecracker.scn */,
 				9AC4BE5B20C44D8200259387 /* firebox.png */,
 				9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */,
 				9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */,
@@ -176,7 +173,6 @@
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
 				9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */,
-				9A1FE1E920C1A64000D32095 /* firecracker.scn in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
