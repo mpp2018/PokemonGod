@@ -8,7 +8,7 @@
 import ARKit
 import UIKit
 
-class ViewController: UIViewController {
+class FirecrackerViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
     private var firecrackers:[SCNNode] = []
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         stopButton.layer.cornerRadius = 10;
         stopButton.addTarget(
             self,
-            action: #selector(ViewController.stopButtonDidClick),
+            action: #selector(FirecrackerViewController.stopButtonDidClick),
             for: .touchUpInside)
         stopButton.frame.size.height = 40
         stopButton.frame.size.width = 80
@@ -396,15 +396,13 @@ class ViewController: UIViewController {
         let translationMatrix =
             SCNMatrix4MakeTranslation(position.x, position.y,
                                       position.z)
-        let transformMatrix =
-            SCNMatrix4Mult(rotationMatrix, translationMatrix)
-        // 4
+        
 //        scnScene.addParticleSystem(explosion, transform: transformMatrix)
     }
 }
 
 
-extension ViewController: ARSCNViewDelegate {
+extension FirecrackerViewController: ARSCNViewDelegate {
  
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         
@@ -456,7 +454,7 @@ extension ViewController: ARSCNViewDelegate {
     }
 }
 
-extension ViewController:SCNPhysicsContactDelegate {
+extension FirecrackerViewController:SCNPhysicsContactDelegate {
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
@@ -471,7 +469,7 @@ extension ViewController:SCNPhysicsContactDelegate {
     }
 }
 
-extension ViewController:UIGestureRecognizerDelegate {
+extension FirecrackerViewController:UIGestureRecognizerDelegate {
 //    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 //
 //    }

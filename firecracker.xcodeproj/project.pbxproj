@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */; };
-		9A1FE1D620C0E7B900D32095 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* ViewController.swift */; };
+		9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */; };
 		9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D720C0E7B900D32095 /* Main.storyboard */; };
 		9A1FE1DC20C0E7B900D32095 /* firecracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DA20C0E7B900D32095 /* firecracker.xcdatamodeld */; };
 		9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		9A1FE1D020C0E7B900D32095 /* firecracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firecracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A1FE1D520C0E7B900D32095 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirecrackerViewController.swift; sourceTree = "<group>"; };
 		9A1FE1D820C0E7B900D32095 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A1FE1DB20C0E7B900D32095 /* firecracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = firecracker.xcdatamodel; sourceTree = "<group>"; };
 		9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */,
-				9A1FE1D520C0E7B900D32095 /* ViewController.swift */,
+				9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */,
 				9A1FE1D720C0E7B900D32095 /* Main.storyboard */,
 				9A66FC5D20C3002300FFAF65 /* Particles */,
 				9A1FE1F520C1A83E00D32095 /* Models */,
@@ -190,7 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1FE1D620C0E7B900D32095 /* ViewController.swift in Sources */,
+				9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */,
 				9A1FE1DC20C0E7B900D32095 /* firecracker.xcdatamodeld in Sources */,
 				9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */,
 			);
