@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nJG-Tt-aO8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="RHm-nU-Rfb"/>
+                    <tabBarItem key="tabBarItem" title="擲筊" id="RHm-nU-Rfb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9a-LG-USC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -36,7 +36,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ulV-7C-8rF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="jvZ-lz-9BA"/>
+                    <tabBarItem key="tabBarItem" title="燒金紙" id="jvZ-lz-9BA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fnb-ia-tXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +71,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="7TG-Ea-i6b"/>
+                    <tabBarItem key="tabBarItem" title="鞭炮" id="7TG-Ea-i6b"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
