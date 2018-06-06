@@ -13,7 +13,7 @@
         <!--Moon Block-->
         <scene sceneID="p4a-88-BJE">
             <objects>
-                <viewController title="Moon Block" id="Gqa-z9-HDB" sceneMemberID="viewController">
+                <viewController title="Moon Block" id="Gqa-z9-HDB" customClass="MoonBlockViewController" customModule="firecracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OwH-qm-14w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
         <!--Paper Money-->
         <scene sceneID="sv1-Ys-RUM">
             <objects>
-                <viewController title="Paper Money" id="ZUh-Gu-8M9" sceneMemberID="viewController">
+                <viewController title="Paper Money" id="ZUh-Gu-8M9" customClass="PaperMoneyViewController" customModule="firecracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LLj-Xz-hRb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
