@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3F644520CA5893001CF570 /* PaperMoney.storyboard */; };
 		9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */; };
 		9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */; };
 		9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D720C0E7B900D32095 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C3F644620CA5893001CF570 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = firecracker/Base.lproj/PaperMoney.storyboard; sourceTree = "<group>"; };
 		9A1FE1D020C0E7B900D32095 /* firecracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firecracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirecrackerViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		9A1FE1D220C0E7B900D32095 /* firecracker */ = {
 			isa = PBXGroup;
 			children = (
+				4C3F644520CA5893001CF570 /* PaperMoney.storyboard */,
 				9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */,
 				9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */,
 				9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */,
@@ -183,6 +186,7 @@
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
+				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,
 				9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */,
@@ -207,6 +211,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4C3F644520CA5893001CF570 /* PaperMoney.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C3F644620CA5893001CF570 /* Base */,
+			);
+			name = PaperMoney.storyboard;
+			sourceTree = "<group>";
+		};
 		9A1FE1D720C0E7B900D32095 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -345,13 +357,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BHP8ZZGLVM;
+				DEVELOPMENT_TEAM = 6NWATQPH7P;
 				INFOPLIST_FILE = firecracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huaiyulin.pokemongod;
+				PRODUCT_BUNDLE_IDENTIFIER = idv.shawn.pokemongod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,13 +375,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BHP8ZZGLVM;
+				DEVELOPMENT_TEAM = 6NWATQPH7P;
 				INFOPLIST_FILE = firecracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.huaiyulin.pokemongod;
+				PRODUCT_BUNDLE_IDENTIFIER = idv.shawn.pokemongod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

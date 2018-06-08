@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUh-Gu-8M9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Paper Money-->
+        <scene sceneID="sv1-Ys-RUM">
+            <objects>
+                <viewController title="Paper Money" id="ZUh-Gu-8M9" customClass="PaperMoneyViewController" customModule="firecracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LLj-Xz-hRb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" allowsCameraControl="YES" autoenablesDefaultLighting="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LoQ-ul-Tth">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ZUh-Gu-8M9" id="CEN-PP-qWN"/>
+                                </connections>
+                            </arscnView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LoQ-ul-Tth" firstAttribute="bottom" secondItem="ulV-7C-8rF" secondAttribute="bottom" id="QBa-5b-zId"/>
+                            <constraint firstItem="LoQ-ul-Tth" firstAttribute="trailing" secondItem="ulV-7C-8rF" secondAttribute="trailing" id="SRf-Za-fGf"/>
+                            <constraint firstItem="LoQ-ul-Tth" firstAttribute="leading" secondItem="ulV-7C-8rF" secondAttribute="leading" id="aUy-PS-tkj"/>
+                            <constraint firstItem="LoQ-ul-Tth" firstAttribute="top" secondItem="LLj-Xz-hRb" secondAttribute="top" id="uDE-Qf-EH0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ulV-7C-8rF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="燒金紙" id="jvZ-lz-9BA"/>
+                    <connections>
+                        <outlet property="sceneView" destination="LoQ-ul-Tth" id="diS-Sf-FPQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fnb-ia-tXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528.8" y="-306.29685157421289"/>
+        </scene>
+    </scenes>
+</document>
