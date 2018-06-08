@@ -64,7 +64,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         let plane = SCNPlane(width: width, height: height)
         
         plane.materials.first?.diffuse.contents = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
-
+        
         let planeNode = SCNNode(geometry: plane)
         
         let position = SCNVector3(planeAnchor.center.x,
@@ -79,6 +79,16 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         physicalBody.isAffectedByGravity = false
         planeNode.physicsBody = physicalBody
         node.addChildNode(planeNode)
+        
+        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+            #if DEBUG
+            assert(false)
+            #else
+            return
+            #endif
+        }
+        
+        planeNode.addParticleSystem(fire)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
