@@ -13,6 +13,16 @@ class PaperMoneyViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
     
+    var paper: SCNNode?
+    /// Convenience accessor for the session owned by ARSCNView.
+    var session: ARSession {
+        return sceneView.session
+    }
+    
+    var isHit = false
+    
+    var papers = Set<SCNNode>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,13 +38,22 @@ class PaperMoneyViewController: UIViewController {
             """) // For details, see https://developer.apple.com/documentation/arkit
         }
         
-        
         // Set a delegate to track the number of plane anchors for providing UI feedback.
         sceneView.session.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
         #if DEBUG
         // Show debug UI to view performance metrics (e.g. frames per second).
         sceneView.showsStatistics = true
         #endif
+        
+        let tapGesture = UITapGestureRecognizer()
+        
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        
+        sceneView.addGestureRecognizer(tapGesture)
+        
+        tapGesture.addTarget(self, action: #selector(didTap(recognizer:)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,8 +68,54 @@ class PaperMoneyViewController: UIViewController {
     /// Creates a new AR configuration to run on the `session`.
     private func resetTracking() {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.horizontal, .vertical]
+        configuration.planeDetection = [.horizontal]
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
+    private func setupPaper() {
+        let scene = SCNScene(named: "sticky note.scn")!
+        paper = scene.rootNode.childNode(withName: "note", recursively: true)
+        paper?.simdPosition = float3(0, 0, -0.5)
+        paper?.physicsBody = .dynamic()
+        paper?.physicsBody?.isAffectedByGravity = true
+        paper?.physicsBody?.allowsResting = true
+        paper?.physicsBody?.collisionBitMask = 0
+        if let apaper = paper {
+            papers.insert(apaper)
+        }
+    }
+    
+    @objc func didTap(recognizer:UITapGestureRecognizer) {
+        
+        setupPaper()
+
+        guard let aPaper = paper else {
+            return
+        }
+        
+        guard let currentTransform = session.currentFrame?.camera.transform else { return }
+        
+        
+        var translation = matrix_identity_float4x4
+        
+        //Change The X Value
+        translation.columns.3.x = 0
+        
+        //Change The Y Value
+        translation.columns.3.y = 0
+        
+        //Change The Z Value
+        translation.columns.3.z = 0
+        
+        //model to view matrix
+        aPaper.simdTransform = currentTransform * translation * (paper?.simdTransform)!
+        sceneView.scene.rootNode.addChildNode(aPaper)
+        
+        let forceScale = Float(2)
+        let angle = Float(30.0 / 180 * Double.pi)
+        let relatedForce = currentTransform * simd_float4x4(SCNMatrix4Rotate(SCNMatrix4Identity, Float.pi / 2, 0, 0, 1)) * float4(0, forceScale*sin(angle), -forceScale*cos(angle), 1)
+        
+        aPaper.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
     }
 }
 
@@ -61,34 +126,36 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         
         let width = CGFloat(planeAnchor.extent.x)
         let height = CGFloat(planeAnchor.extent.y)
-        let plane = SCNPlane(width: width, height: height)
         
-        plane.materials.first?.diffuse.contents = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
-        
-        let planeNode = SCNNode(geometry: plane)
-        
-        let position = SCNVector3(planeAnchor.center.x,
-                                  planeAnchor.center.y,
-                                  planeAnchor.center.z)
-        planeNode.name = "plane"
-        planeNode.position = position
-        planeNode.eulerAngles.x = -.pi/2
-        
-        let planeGeometry = SCNBox(width: width, height: 0.01, length: height, chamferRadius: 0)
-        let physicalBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: planeGeometry, options: nil))
-        physicalBody.isAffectedByGravity = false
-        planeNode.physicsBody = physicalBody
-        node.addChildNode(planeNode)
-        
-        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
-            #if DEBUG
-            assert(false)
-            #else
-            return
-            #endif
+        if sceneView.scene.rootNode.childNode(withName: "plane", recursively: true) == nil {
+            let plane = SCNPlane(width: width, height: height)
+            plane.firstMaterial?.diffuse.contents = UIColor.clear
+            let planeNode = SCNNode(geometry: plane)
+            
+            let position = SCNVector3(planeAnchor.center.x,
+                                      planeAnchor.center.y,
+                                      planeAnchor.center.z)
+            planeNode.name = "plane"
+            planeNode.position = position
+            node.addChildNode(planeNode)
+            
+            let box = SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0)
+            box.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.3)
+            let bucket = SCNNode(geometry: box)
+            bucket.name = "bucket"
+            bucket.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z - 0.5)
+            bucket.physicsBody = SCNPhysicsBody.kinematic()
+            bucket.physicsBody?.categoryBitMask = 2
+            bucket.physicsBody?.collisionBitMask = 0
+            bucket.physicsBody?.contactTestBitMask = 1
+            
+            guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+                assert(false)
+            }
+            
+            bucket.addParticleSystem(fire)
+            node.addChildNode(bucket)
         }
-        
-        planeNode.addParticleSystem(fire)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
@@ -107,15 +174,21 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        guard let planeNode = sceneView.scene.rootNode.childNode(withName: "plane", recursively: true) else { return }
+        if paper?.parent != nil && (paper?.presentation.simdWorldPosition.y)! < planeNode.presentation.simdWorldPosition.y {
+            paper?.physicsBody?.velocity = SCNVector3Zero
+            paper?.physicsBody?.isAffectedByGravity = false
+        }
+        
+        if paper?.parent != nil && paper!.presentation.simdWorldPosition.y < -2 {
+            paper!.removeFromParentNode()
+            papers.remove(paper)
+        }
     }
 }
 
 extension PaperMoneyViewController:ARSessionDelegate {
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay.
-        print("Session was interrupted")
-    }
-    
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required.
         print("Session interruption ended")
@@ -127,8 +200,23 @@ extension PaperMoneyViewController:ARSessionDelegate {
         print("Session failed: \(error.localizedDescription)")
         resetTracking()
     }
-    
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        print("Adding anchor")
+}
+
+extension PaperMoneyViewController: SCNPhysicsContactDelegate {
+    func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {
+        guard let bucket = sceneView.scene.rootNode.childNode(withName: "bucket", recursively: true) else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            if contact.nodeA == bucket{
+                contact.nodeB.removeFromParentNode()
+                self.papers.remove(contact.nodeB)
+            }
+            else {
+                contact.nodeA.removeFromParentNode()
+                self.papers.remove(contact.nodeA)
+            }
+        }
     }
 }

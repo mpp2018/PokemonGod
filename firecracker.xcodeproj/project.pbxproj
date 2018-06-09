@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3F644520CA5893001CF570 /* PaperMoney.storyboard */; };
+		4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */; };
+		4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */; };
+		4C6581C720CB64360093F69D /* sticky note.scn in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C420CB64360093F69D /* sticky note.scn */; };
 		9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */; };
 		9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */; };
 		9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D720C0E7B900D32095 /* Main.storyboard */; };
@@ -29,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		4C3F644620CA5893001CF570 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = firecracker/Base.lproj/PaperMoney.storyboard; sourceTree = "<group>"; };
+		4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stickyNoteShadow_DIFFUSE.png; sourceTree = "<group>"; };
+		4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stickyNote_DIFFUSE.png; sourceTree = "<group>"; };
+		4C6581C420CB64360093F69D /* sticky note.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "sticky note.scn"; sourceTree = "<group>"; };
 		9A1FE1D020C0E7B900D32095 /* firecracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firecracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirecrackerViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +67,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C6581C020CB64360093F69D /* sticky note */ = {
+			isa = PBXGroup;
+			children = (
+				4C6581C120CB64360093F69D /* textures */,
+				4C6581C420CB64360093F69D /* sticky note.scn */,
+			);
+			path = "sticky note";
+			sourceTree = "<group>";
+		};
+		4C6581C120CB64360093F69D /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */,
+				4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		9A1FE1C720C0E7B800D32095 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +123,7 @@
 		9A1FE1F520C1A83E00D32095 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4C6581C020CB64360093F69D /* sticky note */,
 				9AC4BE5B20C44D8200259387 /* firebox.png */,
 				9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */,
 				9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */,
@@ -182,6 +207,7 @@
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
 				9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */,
+				4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
@@ -189,6 +215,8 @@
 				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,
+				4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */,
+				4C6581C720CB64360093F69D /* sticky note.scn in Resources */,
 				9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
