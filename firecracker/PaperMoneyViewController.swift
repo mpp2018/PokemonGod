@@ -139,9 +139,9 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             planeNode.position = position
             node.addChildNode(planeNode)
             
-            let box = SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0)
-            box.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.3)
-            let bucket = SCNNode(geometry: box)
+            let cylinder = SCNCylinder(radius: 0.1, height: 0.2)
+            cylinder.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.5)
+            let bucket = SCNNode(geometry: cylinder)
             bucket.name = "bucket"
             bucket.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z - 0.5)
             bucket.physicsBody = SCNPhysicsBody.kinematic()
@@ -183,7 +183,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         
         if paper?.parent != nil && paper!.presentation.simdWorldPosition.y < -2 {
             paper!.removeFromParentNode()
-            papers.remove(paper)
+            papers.remove(paper!)
         }
     }
 }
