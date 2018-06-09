@@ -139,8 +139,8 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             planeNode.position = position
             node.addChildNode(planeNode)
             
-            let cylinder = SCNCylinder(radius: 0.1, height: 0.2)
-            cylinder.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 0.5)
+            let cylinder = SCNCylinder(radius: 0.07, height: 0.15)
+            cylinder.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 1)
             let bucket = SCNNode(geometry: cylinder)
             bucket.name = "bucket"
             bucket.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z - 0.5)
