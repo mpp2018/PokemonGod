@@ -28,6 +28,7 @@
 		9ABC940720C7EB10005724C5 /* MoonBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */; };
 		9ABC940920C7EB20005724C5 /* PaperMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */; };
 		9AC4BE5C20C44D8300259387 /* firebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC4BE5B20C44D8200259387 /* firebox.png */; };
+		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonBlockViewController.swift; sourceTree = "<group>"; };
 		9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperMoneyViewController.swift; sourceTree = "<group>"; };
 		9AC4BE5B20C44D8200259387 /* firebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firebox.png; sourceTree = "<group>"; };
+		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */,
 				9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */,
 				9A1FE1ED20C1A83500D32095 /* purple_firecracker.jpg */,
+				A080237120CEACCB0026E0F6 /* CrescentMoon.scn */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,
 				4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */,
 				4C6581C720CB64360093F69D /* sticky note.scn in Resources */,
+				A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */,
 				9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,13 +389,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6NWATQPH7P;
+				DEVELOPMENT_TEAM = LWGU86R2D3;
 				INFOPLIST_FILE = firecracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = idv.shawn.pokemongod;
+				PRODUCT_BUNDLE_IDENTIFIER = beayuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,13 +407,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6NWATQPH7P;
+				DEVELOPMENT_TEAM = LWGU86R2D3;
 				INFOPLIST_FILE = firecracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = idv.shawn.pokemongod;
+				PRODUCT_BUNDLE_IDENTIFIER = beayuan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -14,12 +14,10 @@
         <scene sceneID="p4a-88-BJE">
             <objects>
                 <viewController title="Moon Block" id="Gqa-z9-HDB" customClass="MoonBlockViewController" customModule="firecracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OwH-qm-14w">
+                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="q7W-sP-OSl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="nJG-Tt-aO8"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </sceneKitView>
                     <tabBarItem key="tabBarItem" title="擲筊" id="RHm-nU-Rfb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9a-LG-USC" userLabel="First Responder" sceneMemberID="firstResponder"/>

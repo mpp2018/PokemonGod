@@ -11,8 +11,6 @@ import SceneKit
 import ARKit
 
 class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate{
-    
-    let basketballNodeName = "basketball"
     var rightBlock = SCNNode()
     var leftBlock = SCNNode()
     var setup = true
@@ -75,13 +73,17 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         
     }
     func addBasketball(x: Float = 0.0, y: Float = 0, z: Float = -2, plane node: SCNNode) {
-        let ballScene = SCNScene(named: "CrescentMoon.scn")!
+        let ballScene = SCNScene(named: "Models/CrescentMoon.scn")!
         rightBlock = ballScene.rootNode.childNode(withName: "right_block", recursively: true)!
         let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
         rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
         leftBlock = ballScene.rootNode.childNode(withName: "left_block", recursively: true)!
         let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
         leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
+        
+        //add light
+        let light = ballScene.rootNode.childNode(withName: "omni",recursively: true)!
+        light.position = SCNVector3(0, 20, 0)
         
         //basketballNode.addChildNode(rightBlock!)
         //basketballNode.addChildNode(leftBlock!)
@@ -99,7 +101,8 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         //guard recognizer.state == .ended else { return }
         if(!throwing){
             throwing = true
-            //rightBlock.physicsBody?.isAffectedByGravity = true
+            rightBlock.physicsBody?.isAffectedByGravity = true
+            leftBlock.physicsBody?.isAffectedByGravity = true
             rightBlock.physicsBody = SCNPhysicsBody.dynamic()
             leftBlock.physicsBody = SCNPhysicsBody.dynamic()
             
@@ -110,9 +113,13 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
             rightBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             leftBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10), execute: {
-                self.throwing = false
                 self.rightBlock.physicsBody = SCNPhysicsBody.static()
                 self.leftBlock.physicsBody = SCNPhysicsBody.static()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10), execute: {
+                    self.rightBlock.physicsBody?.isAffectedByGravity = false
+                    self.leftBlock.physicsBody?.isAffectedByGravity = false
+                    self.throwing = false
+                })
             })
         }
         
