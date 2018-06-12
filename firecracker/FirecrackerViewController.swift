@@ -19,7 +19,7 @@ class FirecrackerViewController: UIViewController {
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
     private var planeToggle = UISwitch()
     private var explodeButton = UIButton()
-    private var stopButton = UIButton()
+    private var cleanButton = UIButton()
     private var player: AVAudioPlayer?
     
     func playSound() {
@@ -95,25 +95,25 @@ class FirecrackerViewController: UIViewController {
         planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
         
         
-        // stopButton setup
-        stopButton.setTitle("Stop", for: .normal)
-        stopButton.setTitleColor(UIColor.white, for: .normal)
-        stopButton.isEnabled = true
-        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
-        stopButton.layer.cornerRadius = 10;
-        stopButton.addTarget(
+        // cleanButton setup
+        cleanButton.setTitle("Clean", for: .normal)
+        cleanButton.setTitleColor(UIColor.white, for: .normal)
+        cleanButton.isEnabled = true
+        cleanButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        cleanButton.layer.cornerRadius = 10;
+        cleanButton.addTarget(
             self,
-            action: #selector(FirecrackerViewController.stopButtonDidClick),
+            action: #selector(FirecrackerViewController.cleanButtonDidClick),
             for: .touchUpInside)
-        stopButton.frame.size.height = 40
-        stopButton.frame.size.width = 80
-        stopButton.center = CGPoint(
+        cleanButton.frame.size.height = 40
+        cleanButton.frame.size.width = 80
+        cleanButton.center = CGPoint(
             x: explodeButton.center.x + 100,
             y: explodeButton.center.y)
         
         
         self.view.addSubview(explodeButton)
-        self.view.addSubview(stopButton)
+        self.view.addSubview(cleanButton)
         self.view.addSubview(planeToggle)
         
     }
@@ -127,8 +127,16 @@ class FirecrackerViewController: UIViewController {
         firecrackerExplode()
     }
     
-    @objc func stopButtonDidClick(_ sender:Any) {
-        
+    @objc func cleanButtonDidClick(_ sender:Any) {
+
+        for node in sceneView.scene.rootNode.childNodes {
+            if node.name == "firecrackerSet" ||
+                node.name == "box" ||
+                node.name == "line"  {
+                node.removeFromParentNode()
+            }
+            
+        }
     }
     
     func setupScene() {
@@ -233,13 +241,13 @@ class FirecrackerViewController: UIViewController {
         material.diffuse.contents = UIColor.init(red: 1, green: 0.3, blue: 0.3, alpha: 0)
         box.materials = [material]
         let boxNode = SCNNode(geometry: box)
-        boxNode.name = "Ball"
+        boxNode.name = "box"
         let boxCore = SCNBox(width: 0.06, height: 0.02, length: 0.06, chamferRadius: 0.003)
         let boxCoreMaterial = SCNMaterial()
         boxCoreMaterial.diffuse.contents =  UIImage(named:"firebox.png")
         boxCore.materials = [boxCoreMaterial]
         let boxCoreNode = SCNNode(geometry: boxCore)
-        boxCoreNode.name = "BallCore"
+        boxCoreNode.name = "boxCore"
         boxCoreNode.position = SCNVector3Make(0, 0.01, 0)
         boxCoreNode.eulerAngles.y = -.pi/4
         boxNode.addChildNode(boxCoreNode)

@@ -128,7 +128,7 @@ class PaperMoneyViewController: UIViewController {
         stopButton.layer.cornerRadius = 10;
         stopButton.addTarget(
             self,
-            action: #selector(FirecrackerViewController.stopButtonDidClick),
+            action: #selector(stopButtonDidClick),
             for: .touchUpInside)
         stopButton.frame.size.height = 40
         stopButton.frame.size.width = 80
