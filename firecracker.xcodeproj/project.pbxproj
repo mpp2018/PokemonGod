@@ -28,6 +28,7 @@
 		9ABC940720C7EB10005724C5 /* MoonBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */; };
 		9ABC940920C7EB20005724C5 /* PaperMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */; };
 		9AC4BE5C20C44D8300259387 /* firebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC4BE5B20C44D8200259387 /* firebox.png */; };
+		9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */; };
 		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonBlockViewController.swift; sourceTree = "<group>"; };
 		9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperMoneyViewController.swift; sourceTree = "<group>"; };
 		9AC4BE5B20C44D8200259387 /* firebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firebox.png; sourceTree = "<group>"; };
+		9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bucket_texture.png; sourceTree = "<group>"; };
 		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 		4C6581C020CB64360093F69D /* sticky note */ = {
 			isa = PBXGroup;
 			children = (
+				9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */,
 				4C6581C120CB64360093F69D /* textures */,
 				4C6581C420CB64360093F69D /* sticky note.scn */,
 			);
@@ -214,6 +217,7 @@
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
+				9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */,
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
 				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
