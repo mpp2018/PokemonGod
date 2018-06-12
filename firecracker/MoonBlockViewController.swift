@@ -144,6 +144,49 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         
     }
     
+    func getMoonBlock() {
+        
+        guard let centerPoint = ARView.pointOfView else {
+            return
+        }
+        
+        let cameraTransform = centerPoint.transform
+        let cameraLocation = SCNVector3(x: cameraTransform.m41, y: cameraTransform.m42, z: cameraTransform.m43)
+        let cameraOrientation = SCNVector3(x: -cameraTransform.m31, y: -cameraTransform.m32, z: -cameraTransform.m33)
+        
+        
+        let cameraPosition = SCNVector3Make(
+            cameraLocation.x + cameraOrientation.x,
+            cameraLocation.y + cameraOrientation.y,
+            cameraLocation.z + cameraOrientation.z)
+        
+        print(cameraLocation)
+        print(cameraOrientation)
+        print(cameraPosition)
+        
+        let moonBlockScene = SCNScene(named: "CrescentMoon.scn")!
+        rightBlock = moonBlockScene.rootNode.childNode(withName: "right_block", recursively: true)!
+        let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
+        leftBlock = moonBlockScene.rootNode.childNode(withName: "left_block", recursively: true)!
+        let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
+        
+        //add light
+        let light = moonBlockScene.rootNode.childNode(withName: "omni",recursively: true)!
+        light.position = SCNVector3(0, 20, 0)
+        
+        ARView.scene.rootNode.addChildNode(rightBlock)
+        ARView.scene.rootNode.addChildNode(leftBlock)
+        
+        rightBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, 5, 0), cameraTransform)
+        leftBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, -5, 0), cameraTransform)
+//
+//        let forceVector:Float = 5
+//        ballNode.physicsBody?.applyForce(SCNVector3(x: cameraOrientation.x * forceVector, y: cameraOrientation.y * forceVector, z: cameraOrientation.z * forceVector), asImpulse: true)
+//        BallNodesArray.append(ballNode)
+//        sceneView.scene.rootNode.addChildNode(ballNode)
+    }
     
     func changePlaneColor() {
         if !planeToggle.isOn {
@@ -159,31 +202,24 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         
     }
     
-    func addBasketball(x: Float = 0.0, y: Float = 0, z: Float = -2, plane node: SCNNode) {
-        let ballScene = SCNScene(named: "CrescentMoon.scn")!
-        rightBlock = ballScene.rootNode.childNode(withName: "right_block", recursively: true)!
+    func addMoonBlock() {
+        let moonBlockScene = SCNScene(named: "CrescentMoon.scn")!
+        rightBlock = moonBlockScene.rootNode.childNode(withName: "right_block", recursively: true)!
         let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
         rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
-        leftBlock = ballScene.rootNode.childNode(withName: "left_block", recursively: true)!
+        leftBlock = moonBlockScene.rootNode.childNode(withName: "left_block", recursively: true)!
         let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
         leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
         
         //add light
-        let light = ballScene.rootNode.childNode(withName: "omni",recursively: true)!
+        let light = moonBlockScene.rootNode.childNode(withName: "omni",recursively: true)!
         light.position = SCNVector3(0, 20, 0)
         
-        //basketballNode.addChildNode(rightBlock!)
-        //basketballNode.addChildNode(leftBlock!)
-        //basketballNode.position = SCNVector3(0, 0, -0.3)
-        //basketballNode.scale = SCNVector3(0.001, 0.001, 0.001)
-        //basketballNode.name = basketballNodeName
-        //basketballNode
-        //ballScene.rootNode.addChildNode(self.basketballNode)
         ARView.scene.rootNode.addChildNode(rightBlock)
         ARView.scene.rootNode.addChildNode(leftBlock)
-        //node.addChildNode(self.basketballNode)
     }
-    @objc func throwBasketball(withGestureRecognizer recognizer: UIGestureRecognizer){
+    
+    @objc func throwMoonBlock(withGestureRecognizer recognizer: UIGestureRecognizer){
         let currentTransform = ARView.session.currentFrame?.camera.transform
         //guard recognizer.state == .ended else { return }
         if(!throwing){
@@ -213,7 +249,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     }
     
     func addSwipeGesturesToSceneView() {
-        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MoonBlockViewController.throwBasketball(withGestureRecognizer:)))
+        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MoonBlockViewController.throwMoonBlock(withGestureRecognizer:)))
         swipeUpGestureRecognizer.direction = .up
         ARView.addGestureRecognizer(swipeUpGestureRecognizer)
         
@@ -243,7 +279,7 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         
         node.addChildNode(planeNode)
         planes.append(planeNode)
-        addBasketball(x: planeAnchor.center.x,y: 0.5,z: planeAnchor.center.z,plane: node)
+        addMoonBlock()
         setup = false
         
     }
