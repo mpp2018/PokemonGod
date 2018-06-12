@@ -33,6 +33,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
 
         setupButtons()
         ARView.delegate = self
+        ARView.showsStatistics = true
         ARView.session.delegate = self
         ARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         // Run the view's session
@@ -87,48 +88,48 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     
     func setupButtons() {
         // explodeBuddon setup
-        explodeButton.setTitle("Explode", for: .normal)
-        explodeButton.setTitleColor(.white, for: .normal)
-        explodeButton.backgroundColor = UIColor(red: 207/255,
-                                                green: 30/255,
-                                                blue: 80/255,
-                                                alpha: 0.6)
-        explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
-        explodeButton.layer.cornerRadius = 10
-        explodeButton.isEnabled = true
-        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
-        
+//        explodeButton.setTitle("Explode", for: .normal)
+//        explodeButton.setTitleColor(.white, for: .normal)
+//        explodeButton.backgroundColor = UIColor(red: 207/255,
+//                                                green: 30/255,
+//                                                blue: 80/255,
+//                                                alpha: 0.6)
+//        explodeButton.frame.size = CGSize(width: 80, height: 40)
+//        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+//        explodeButton.layer.cornerRadius = 10
+//        explodeButton.isEnabled = true
+//        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        let bottomCenter = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
         // planeToggle setup
         planeToggle = UISwitch()
         planeToggle.isOn = true
         planeToggle.tintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
         planeToggle.onTintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
         planeToggle.frame.size = CGSize(width: 80, height: 40)
-        planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
-                                     y: explodeButton.center.y)
+        planeToggle.center = CGPoint(x: bottomCenter.x - 100,
+                                     y: bottomCenter.y)
         planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
+//
+//
+//        // stopButton setup
+//        stopButton.setTitle("Stop", for: .normal)
+//        stopButton.setTitleColor(UIColor.white, for: .normal)
+//        stopButton.isEnabled = true
+//        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+//        stopButton.layer.cornerRadius = 10;
+//        stopButton.addTarget(
+//            self,
+//            action: #selector(FirecrackerViewController.stopButtonDidClick),
+//            for: .touchUpInside)
+//        stopButton.frame.size.height = 40
+//        stopButton.frame.size.width = 80
+//        stopButton.center = CGPoint(
+//            x: explodeButton.center.x + 100,
+//            y: explodeButton.center.y)
+//
         
-        
-        // stopButton setup
-        stopButton.setTitle("Stop", for: .normal)
-        stopButton.setTitleColor(UIColor.white, for: .normal)
-        stopButton.isEnabled = true
-        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
-        stopButton.layer.cornerRadius = 10;
-        stopButton.addTarget(
-            self,
-            action: #selector(FirecrackerViewController.stopButtonDidClick),
-            for: .touchUpInside)
-        stopButton.frame.size.height = 40
-        stopButton.frame.size.width = 80
-        stopButton.center = CGPoint(
-            x: explodeButton.center.x + 100,
-            y: explodeButton.center.y)
-        
-        
-        self.view.addSubview(explodeButton)
-        self.view.addSubview(stopButton)
+//        self.view.addSubview(explodeButton)
+//        self.view.addSubview(stopButton)
         self.view.addSubview(planeToggle)
     }
     

@@ -104,7 +104,7 @@ class PaperMoneyViewController: UIViewController {
                                                 blue: 80/255,
                                                 alpha: 0.6)
         fireButton.frame.size = CGSize(width: 80, height: 40)
-        fireButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        fireButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
         fireButton.layer.cornerRadius = 10
         fireButton.isEnabled = true
         fireButton.addTarget(self, action: #selector(fireButtonDidClick(_:)), for: .touchUpInside)

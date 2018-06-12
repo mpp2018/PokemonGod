@@ -56,7 +56,7 @@ class FirecrackerViewController: UIViewController {
                                                 blue: 80/255,
                                                 alpha: 0.6)
         explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
         explodeButton.layer.cornerRadius = 10
         explodeButton.isEnabled = true
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
