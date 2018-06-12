@@ -15,18 +15,26 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     var leftBlock = SCNNode()
     var setup = true
     var throwing = false
-    
+    private var planeToggle = UISwitch()
+    private var explodeButton = UIButton()
+    private var stopButton = UIButton()
+    private var planeColor:UIColor!
+    private var planes:[SCNNode] = []
     
     @IBOutlet weak var ARView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         // Set the view's delegate
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
+
+        setupButtons()
         ARView.delegate = self
         ARView.session.delegate = self
+        ARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         // Run the view's session
         ARView.session.run(configuration)
         addSwipeGesturesToSceneView()
@@ -34,6 +42,9 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        ARView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,6 +84,81 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    func setupButtons() {
+        // explodeBuddon setup
+        explodeButton.setTitle("Explode", for: .normal)
+        explodeButton.setTitleColor(.white, for: .normal)
+        explodeButton.backgroundColor = UIColor(red: 207/255,
+                                                green: 30/255,
+                                                blue: 80/255,
+                                                alpha: 0.6)
+        explodeButton.frame.size = CGSize(width: 80, height: 40)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        explodeButton.layer.cornerRadius = 10
+        explodeButton.isEnabled = true
+        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        
+        // planeToggle setup
+        planeToggle = UISwitch()
+        planeToggle.isOn = true
+        planeToggle.tintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.onTintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.frame.size = CGSize(width: 80, height: 40)
+        planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
+                                     y: explodeButton.center.y)
+        planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
+        
+        
+        // stopButton setup
+        stopButton.setTitle("Stop", for: .normal)
+        stopButton.setTitleColor(UIColor.white, for: .normal)
+        stopButton.isEnabled = true
+        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        stopButton.layer.cornerRadius = 10;
+        stopButton.addTarget(
+            self,
+            action: #selector(FirecrackerViewController.stopButtonDidClick),
+            for: .touchUpInside)
+        stopButton.frame.size.height = 40
+        stopButton.frame.size.width = 80
+        stopButton.center = CGPoint(
+            x: explodeButton.center.x + 100,
+            y: explodeButton.center.y)
+        
+        
+        self.view.addSubview(explodeButton)
+        self.view.addSubview(stopButton)
+        self.view.addSubview(planeToggle)
+    }
+    
+    @objc func planeToggleDidClick(_ sender: Any) {
+        changePlaneColor()
+    }
+    
+    @objc func explodeButtonDidClick(_ sender: Any) {
+        
+    }
+    
+    @objc func stopButtonDidClick(_ sender:Any) {
+        
+    }
+    
+    
+    func changePlaneColor() {
+        if !planeToggle.isOn {
+            planeColor = UIColor.clear
+            planeToggle.isOn = false
+        } else {
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+            planeToggle.isOn = true
+        }
+        for node in planes {
+            node.geometry?.materials.first?.diffuse.contents = planeColor
+        }
+        
+    }
+    
     func addBasketball(x: Float = 0.0, y: Float = 0, z: Float = -2, plane node: SCNNode) {
         let ballScene = SCNScene(named: "CrescentMoon.scn")!
         rightBlock = ballScene.rootNode.childNode(withName: "right_block", recursively: true)!
@@ -143,7 +229,7 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         let height = CGFloat(planeAnchor.extent.z)
         let plane = SCNPlane(width: width, height: height)
         
-        plane.materials.first?.diffuse.contents = UIColor.lightGray
+        plane.materials.first?.diffuse.contents = planeColor
         
         var planeNode = SCNNode(geometry: plane)
         
@@ -156,6 +242,7 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         update(&planeNode, withGeometry: plane, type: .static)
         
         node.addChildNode(planeNode)
+        planes.append(planeNode)
         addBasketball(x: planeAnchor.center.x,y: 0.5,z: planeAnchor.center.z,plane: node)
         setup = false
         

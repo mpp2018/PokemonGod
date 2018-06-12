@@ -20,8 +20,12 @@ class PaperMoneyViewController: UIViewController {
     }
     
     var isHit = false
-    
     var papers = Set<SCNNode>()
+    private var planeToggle = UISwitch()
+    private var explodeButton = UIButton()
+    private var stopButton = UIButton()
+    private var planeColor:UIColor!
+    private var planes:[SCNNode] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +43,17 @@ class PaperMoneyViewController: UIViewController {
         }
         
         // Set a delegate to track the number of plane anchors for providing UI feedback.
+    
+        setupButtons()
         sceneView.session.delegate = self
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         sceneView.scene.physicsWorld.contactDelegate = self
         #if DEBUG
         // Show debug UI to view performance metrics (e.g. frames per second).
         sceneView.showsStatistics = true
         #endif
         
+        planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         let tapGesture = UITapGestureRecognizer()
         
         tapGesture.numberOfTapsRequired = 1
@@ -83,6 +91,80 @@ class PaperMoneyViewController: UIViewController {
         if let apaper = paper {
             papers.insert(apaper)
         }
+    }
+    
+    
+    func setupButtons() {
+        // explodeBuddon setup
+        explodeButton.setTitle("Explode", for: .normal)
+        explodeButton.setTitleColor(.white, for: .normal)
+        explodeButton.backgroundColor = UIColor(red: 207/255,
+                                                green: 30/255,
+                                                blue: 80/255,
+                                                alpha: 0.6)
+        explodeButton.frame.size = CGSize(width: 80, height: 40)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        explodeButton.layer.cornerRadius = 10
+        explodeButton.isEnabled = true
+        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        
+        // planeToggle setup
+        planeToggle = UISwitch()
+        planeToggle.isOn = true
+        planeToggle.tintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.onTintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
+        planeToggle.frame.size = CGSize(width: 80, height: 40)
+        planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
+                                     y: explodeButton.center.y)
+        planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
+        
+        
+        // stopButton setup
+        stopButton.setTitle("Stop", for: .normal)
+        stopButton.setTitleColor(UIColor.white, for: .normal)
+        stopButton.isEnabled = true
+        stopButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        stopButton.layer.cornerRadius = 10;
+        stopButton.addTarget(
+            self,
+            action: #selector(FirecrackerViewController.stopButtonDidClick),
+            for: .touchUpInside)
+        stopButton.frame.size.height = 40
+        stopButton.frame.size.width = 80
+        stopButton.center = CGPoint(
+            x: explodeButton.center.x + 100,
+            y: explodeButton.center.y)
+        
+        
+        self.view.addSubview(explodeButton)
+        self.view.addSubview(stopButton)
+        self.view.addSubview(planeToggle)
+    }
+    
+    @objc func planeToggleDidClick(_ sender: Any) {
+        changePlaneColor()
+    }
+    
+    @objc func explodeButtonDidClick(_ sender: Any) {
+        
+    }
+    
+    @objc func stopButtonDidClick(_ sender:Any) {
+        
+    }
+    
+    func changePlaneColor() {
+        if !planeToggle.isOn {
+            planeColor = UIColor.clear
+            planeToggle.isOn = false
+        } else {
+            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+            planeToggle.isOn = true
+        }
+        for node in planes {
+            node.geometry?.materials.first?.diffuse.contents = planeColor
+        }
+        
     }
     
     @objc func didTap(recognizer:UITapGestureRecognizer) {
@@ -129,7 +211,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         
         if sceneView.scene.rootNode.childNode(withName: "plane", recursively: true) == nil {
             let plane = SCNPlane(width: width, height: height)
-            plane.firstMaterial?.diffuse.contents = UIColor.clear
+            plane.firstMaterial?.diffuse.contents = planeColor
             let planeNode = SCNNode(geometry: plane)
             
             let position = SCNVector3(planeAnchor.center.x,
@@ -137,13 +219,14 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
                                       planeAnchor.center.z)
             planeNode.name = "plane"
             planeNode.position = position
+            planeNode.eulerAngles.x = -.pi/2
             node.addChildNode(planeNode)
-            
+            planes.append(planeNode)
             let cylinder = SCNCylinder(radius: 0.07, height: 0.15)
             cylinder.firstMaterial?.diffuse.contents = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: 1)
             let bucket = SCNNode(geometry: cylinder)
             bucket.name = "bucket"
-            bucket.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z - 0.5)
+            bucket.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y + Float(cylinder.height/2), planeAnchor.center.z)
             bucket.physicsBody = SCNPhysicsBody.kinematic()
             bucket.physicsBody?.categoryBitMask = 2
             bucket.physicsBody?.collisionBitMask = 0

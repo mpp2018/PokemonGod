@@ -12,12 +12,11 @@ import UIKit
 class FirecrackerViewController: UIViewController {
     private var sceneView:ARSCNView!
     private var planeColor:UIColor!
+    private var planes:[SCNNode] = []
     private var firecrackers:[SCNNode] = []
     private var firecrackerSetNode = SCNNode()
-    private var planes:[SCNNode] = []
     private var previousTranslation:float3 = float3(0.0,0.0,0.0)
     private var planeToggle = UISwitch()
-    private var planeButton = UIButton()
     private var explodeButton = UIButton()
     private var stopButton = UIButton()
     
@@ -70,18 +69,8 @@ class FirecrackerViewController: UIViewController {
         planeToggle.frame.size = CGSize(width: 80, height: 40)
         planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
                                 y: explodeButton.center.y)
-        planeToggle.addTarget(self, action: #selector(planeButtonDidClick(_:)), for: .valueChanged)
+        planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
         
-        // planeButton setup
-        planeButton.setTitle("Hide Plane", for: .normal)
-        planeButton.setTitleColor(.white, for: .normal)
-        planeButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
-        planeButton.frame.size = CGSize(width: 80, height: 40)
-        planeButton.center = CGPoint(x: explodeButton.center.x - 100,
-                                     y: explodeButton.center.y)
-        planeButton.layer.cornerRadius = 10
-        planeButton.isEnabled = true
-        planeButton.addTarget(self, action: #selector(planeButtonDidClick(_:)), for: .touchUpInside)
         
         // stopButton setup
         stopButton.setTitle("Stop", for: .normal)
@@ -102,17 +91,12 @@ class FirecrackerViewController: UIViewController {
         
         self.view.addSubview(explodeButton)
         self.view.addSubview(stopButton)
-//        self.view.addSubview(planeButton)
         self.view.addSubview(planeToggle)
         
     }
     
     @objc func planeToggleDidClick(_ sender: Any) {
         changePlaneColor()
-    }
-    
-    @objc func planeButtonDidClick(_ sender: Any) {
-       changePlaneColor()
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
@@ -346,12 +330,10 @@ class FirecrackerViewController: UIViewController {
     }
     
     func changePlaneColor() {
-        if (planeButton.title(for: .normal) == "Hide Plane" || !planeToggle.isOn) {
-            planeButton.setTitle("Show Plane", for: .normal)
-            planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0)
+        if !planeToggle.isOn {
+            planeColor = UIColor.clear
             planeToggle.isOn = false
         } else {
-            planeButton.setTitle("Hide Plane", for: .normal)
             planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
             planeToggle.isOn = true
         }
