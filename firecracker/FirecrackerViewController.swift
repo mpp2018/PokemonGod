@@ -8,6 +8,7 @@
 
 import ARKit
 import UIKit
+import AVFoundation
 
 class FirecrackerViewController: UIViewController {
     private var sceneView:ARSCNView!
@@ -19,7 +20,29 @@ class FirecrackerViewController: UIViewController {
     private var planeToggle = UISwitch()
     private var explodeButton = UIButton()
     private var stopButton = UIButton()
+    private var player: AVAudioPlayer?
     
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "firecracker", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +123,7 @@ class FirecrackerViewController: UIViewController {
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
+        playSound()
         firecrackerExplode()
     }
     
@@ -347,6 +371,13 @@ class FirecrackerViewController: UIViewController {
         
         guard !firecrackers.isEmpty else {
             return
+        }
+        
+        if firecrackers.count == 2 {
+            player?.setVolume(0, fadeDuration: 0.6)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.player?.stop()
+            }
         }
         
         let firecracker = firecrackers.removeFirst()

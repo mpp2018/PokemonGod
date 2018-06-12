@@ -29,6 +29,7 @@
 		9ABC940920C7EB20005724C5 /* PaperMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */; };
 		9AC4BE5C20C44D8300259387 /* firebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC4BE5B20C44D8200259387 /* firebox.png */; };
 		9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */; };
+		9ACF9ECC20D061C800C7BE2A /* firecracker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */; };
 		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperMoneyViewController.swift; sourceTree = "<group>"; };
 		9AC4BE5B20C44D8200259387 /* firebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firebox.png; sourceTree = "<group>"; };
 		9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bucket_texture.png; sourceTree = "<group>"; };
+		9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = firecracker.mp3; sourceTree = "<group>"; };
 		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				9A66FC5D20C3002300FFAF65 /* Particles */,
 				9A1FE1F520C1A83E00D32095 /* Models */,
 				9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */,
+				9ACF9ECD20D061D200C7BE2A /* Sounds */,
 				9A1FE1DF20C0E7BA00D32095 /* LaunchScreen.storyboard */,
 				9A1FE1E220C0E7BA00D32095 /* Info.plist */,
 				9A1FE1DA20C0E7B900D32095 /* firecracker.xcdatamodeld */,
@@ -148,6 +151,14 @@
 				9A66FC5F20C300B600FFAF65 /* fire.scnp */,
 			);
 			path = Particles;
+			sourceTree = "<group>";
+		};
+		9ACF9ECD20D061D200C7BE2A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +228,7 @@
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
+				9ACF9ECC20D061C800C7BE2A /* firecracker.mp3 in Resources */,
 				9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */,
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
 				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
