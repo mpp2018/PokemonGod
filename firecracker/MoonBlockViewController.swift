@@ -16,6 +16,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     var setup = true
     var throwing = false
     
+    
     @IBOutlet weak var ARView: ARSCNView!
     
     override func viewDidLoad() {
@@ -73,7 +74,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         
     }
     func addBasketball(x: Float = 0.0, y: Float = 0, z: Float = -2, plane node: SCNNode) {
-        let ballScene = SCNScene(named: "Models/CrescentMoon.scn")!
+        let ballScene = SCNScene(named: "CrescentMoon.scn")!
         rightBlock = ballScene.rootNode.childNode(withName: "right_block", recursively: true)!
         let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
         rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
