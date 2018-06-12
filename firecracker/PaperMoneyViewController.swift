@@ -22,10 +22,11 @@ class PaperMoneyViewController: UIViewController {
     var isHit = false
     var papers = Set<SCNNode>()
     private var planeToggle = UISwitch()
-    private var explodeButton = UIButton()
+    private var fireButton = UIButton()
     private var stopButton = UIButton()
     private var planeColor:UIColor!
     private var planes:[SCNNode] = []
+    private var bucketNode = SCNNode()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,18 +96,18 @@ class PaperMoneyViewController: UIViewController {
     
     
     func setupButtons() {
-        // explodeBuddon setup
-        explodeButton.setTitle("Explode", for: .normal)
-        explodeButton.setTitleColor(.white, for: .normal)
-        explodeButton.backgroundColor = UIColor(red: 207/255,
+        // fireButton setup
+        fireButton.setTitle("Fire", for: .normal)
+        fireButton.setTitleColor(.white, for: .normal)
+        fireButton.backgroundColor = UIColor(red: 207/255,
                                                 green: 30/255,
                                                 blue: 80/255,
                                                 alpha: 0.6)
-        explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
-        explodeButton.layer.cornerRadius = 10
-        explodeButton.isEnabled = true
-        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        fireButton.frame.size = CGSize(width: 80, height: 40)
+        fireButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        fireButton.layer.cornerRadius = 10
+        fireButton.isEnabled = true
+        fireButton.addTarget(self, action: #selector(fireButtonDidClick(_:)), for: .touchUpInside)
         
         // planeToggle setup
         planeToggle = UISwitch()
@@ -114,8 +115,8 @@ class PaperMoneyViewController: UIViewController {
         planeToggle.tintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
         planeToggle.onTintColor = UIColor(red: 180/255, green: 160/255, blue: 210/255, alpha: 0.8)
         planeToggle.frame.size = CGSize(width: 80, height: 40)
-        planeToggle.center = CGPoint(x: explodeButton.center.x - 100,
-                                     y: explodeButton.center.y)
+        planeToggle.center = CGPoint(x: fireButton.center.x - 100,
+                                     y: fireButton.center.y)
         planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
         
         
@@ -132,11 +133,11 @@ class PaperMoneyViewController: UIViewController {
         stopButton.frame.size.height = 40
         stopButton.frame.size.width = 80
         stopButton.center = CGPoint(
-            x: explodeButton.center.x + 100,
-            y: explodeButton.center.y)
+            x: fireButton.center.x + 100,
+            y: fireButton.center.y)
         
         
-        self.view.addSubview(explodeButton)
+        self.view.addSubview(fireButton)
         self.view.addSubview(stopButton)
         self.view.addSubview(planeToggle)
     }
@@ -145,12 +146,16 @@ class PaperMoneyViewController: UIViewController {
         changePlaneColor()
     }
     
-    @objc func explodeButtonDidClick(_ sender: Any) {
+    @objc func fireButtonDidClick(_ sender: Any) {
         
+        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+            assert(false)
+        }
+        bucketNode.addParticleSystem(fire)
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
-        
+        bucketNode.removeAllParticleSystems()
     }
     
     func changePlaneColor() {
@@ -240,6 +245,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             }
             
             bucket.addParticleSystem(fire)
+            bucketNode = bucket
             node.addChildNode(bucket)
         }
     }
