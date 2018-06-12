@@ -332,6 +332,7 @@ class FirecrackerViewController: UIViewController {
             firecrackerBottomNode.transform = SCNMatrix4Rotate(firecrackerBottomNode.transform, .pi/2, 0, 0, 1)
             firecrackerSetNode.addChildNode(firecrackerBottomNode)
             firecrackerSetNode.name = "firecrackerSet"
+            
         }
     }
     
@@ -381,38 +382,37 @@ class FirecrackerViewController: UIViewController {
         }
         
         let firecracker = firecrackers.removeFirst()
+        createExplosion(geometry: firecracker.geometry!, position: firecracker.presentation.position,
+                        rotation: firecracker.presentation.rotation)
         firecracker.removeFromParentNode()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(firecrackerExplode), userInfo: nil, repeats: false)
 
         
     }
-    
-    
-    func createFire(color: UIColor, geometry: SCNGeometry) ->
-        SCNParticleSystem {
-            
-            let fire = SCNParticleSystem(named: "Explode.scnp", inDirectory: nil)!
-            fire.particleColor = color
-            fire.emitterShape = geometry
-            return fire
-    }
+   
     
     func createExplosion(geometry: SCNGeometry, position: SCNVector3,
                          rotation: SCNVector4) {
+        
         let explosion =
             SCNParticleSystem(named: "Explode.scnp", inDirectory:
                 nil)!
         explosion.emitterShape = geometry
         explosion.birthLocation = .surface
-        // 3
-        let rotationMatrix = SCNMatrix4MakeRotation(rotation.w, rotation.x,
+        
+        let rotationMatrix =
+            SCNMatrix4MakeRotation(rotation.w, rotation.x,
                                    rotation.y, rotation.z)
         let translationMatrix =
             SCNMatrix4MakeTranslation(position.x, position.y,
                                       position.z)
+        let transformMatrix =
+            SCNMatrix4Mult(rotationMatrix, translationMatrix)
         
-//        scnScene.addParticleSystem(explosion, transform: transformMatrix)
+        sceneView.scene.addParticleSystem(explosion, transform:
+            transformMatrix)
     }
+    
 }
 
 
