@@ -236,13 +236,47 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
             let forceScale = Float(1)
             let angle = Float(30.0 / 180 * Double.pi)
             let relatedForce = currentTransform! * simd_float4x4(SCNMatrix4Rotate(SCNMatrix4Identity, Float.pi / 2, 0, 0, 1)) * float4(0, forceScale*sin(angle), -forceScale*cos(angle), 1)
-            
+            var rightMoonBlockStatus = 1
+            var leftMoonBlockStatus = 1
             rightBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             leftBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
                 self.rightBlock.physicsBody = SCNPhysicsBody.static()
                 self.leftBlock.physicsBody = SCNPhysicsBody.static()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10), execute: {
+                
+                
+                if (self.rightBlock.eulerAngles.z > .pi / 2){
+                    rightMoonBlockStatus = 1
+                }
+                else if (self.rightBlock.eulerAngles.z < .pi / 2){
+                    rightMoonBlockStatus = -1
+                }
+                else{
+                    rightMoonBlockStatus = 0
+                }
+                
+                
+                if (self.leftBlock.eulerAngles.z > .pi / 2){
+                    leftMoonBlockStatus = 1
+                }
+                else if(self.rightBlock.eulerAngles.z > .pi / 2){
+                    leftMoonBlockStatus = -1
+                }
+                else{
+                    leftMoonBlockStatus = 0
+                }
+                
+                
+                if(rightMoonBlockStatus*leftMoonBlockStatus<0){
+                    //正
+                }
+                else if(rightMoonBlockStatus*leftMoonBlockStatus>0){
+                    //反
+                }
+                else{
+                    //立
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
                     self.rightBlock.physicsBody?.isAffectedByGravity = false
                     self.leftBlock.physicsBody?.isAffectedByGravity = false
                     self.throwing = false
