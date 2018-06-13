@@ -153,7 +153,7 @@ class FirecrackerViewController: UIViewController {
  
     func sceneStart() {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = [.vertical, .horizontal]
+        configuration.planeDetection = [.horizontal]
         sceneView.session.run(configuration)
     }
     func configureLighting() {

@@ -27,7 +27,8 @@ class PaperMoneyViewController: UIViewController {
     private var planeColor:UIColor!
     private var planes:[SCNNode] = []
     private var bucketNode = SCNNode()
-    
+    private var extinguishTime:TimeInterval = 0
+    private var currentTime:TimeInterval = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,7 +148,7 @@ class PaperMoneyViewController: UIViewController {
     }
     
     @objc func fireButtonDidClick(_ sender: Any) {
-        
+        extinguishTime = currentTime + 5
         guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
             assert(false)
         }
@@ -155,6 +156,7 @@ class PaperMoneyViewController: UIViewController {
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
+        extinguishTime = currentTime
         bucketNode.removeAllParticleSystems()
     }
     
@@ -266,8 +268,17 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        currentTime = time
+        if extinguishTime == 0.0 {
+            extinguishTime = time + 5
+        }
+        
+        if extinguishTime < time {
+            bucketNode.removeAllParticleSystems()
+        }
         
         guard let planeNode = sceneView.scene.rootNode.childNode(withName: "plane", recursively: true) else { return }
+        
         if paper?.parent != nil && (paper?.presentation.simdWorldPosition.y)! < planeNode.presentation.simdWorldPosition.y {
             paper?.physicsBody?.velocity = SCNVector3Zero
             paper?.physicsBody?.isAffectedByGravity = false
@@ -275,7 +286,16 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         
         if paper?.parent != nil && paper!.presentation.simdWorldPosition.y < -2 {
             paper!.removeFromParentNode()
+            guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+                assert(false)
+            }
+            bucketNode.addParticleSystem(fire)
             papers.remove(paper!)
+            if extinguishTime > currentTime {
+                extinguishTime = extinguishTime + 5
+            } else {
+                extinguishTime = currentTime + 5
+            }
         }
     }
 }
@@ -304,6 +324,13 @@ extension PaperMoneyViewController: SCNPhysicsContactDelegate {
             if contact.nodeA == bucket{
                 contact.nodeB.removeFromParentNode()
                 self.papers.remove(contact.nodeB)
+                self.extinguishTime = self.extinguishTime + 5
+                
+                guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+                    assert(false)
+                }
+                self.bucketNode.addParticleSystem(fire)
+                
             }
             else {
                 contact.nodeA.removeFromParentNode()
