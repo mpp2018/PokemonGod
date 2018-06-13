@@ -205,11 +205,14 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     
     func addMoonBlock() {
         let moonBlockScene = SCNScene(named: "CrescentMoon.scn")!
+        let box = SCNBox(width: 31.454, height: 62.957, length: 10.567, chamferRadius: 0)
         rightBlock = moonBlockScene.rootNode.childNode(withName: "right_block", recursively: true)!
-        let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        //let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        let rightShape = SCNPhysicsShape(geometry: box, options: nil)
         rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
         leftBlock = moonBlockScene.rootNode.childNode(withName: "left_block", recursively: true)!
-        let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        //let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
+        let leftShape = SCNPhysicsShape(geometry: box, options: nil)
         leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
         
         //add light
