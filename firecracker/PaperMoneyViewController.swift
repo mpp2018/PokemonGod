@@ -227,7 +227,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             planeNode.eulerAngles.x = -.pi/2
             node.addChildNode(planeNode)
             planes.append(planeNode)
-            let cylinder = SCNCylinder(radius: 0.04, height: 0.09)
+            let cylinder = SCNCylinder(radius: 0.1, height: 0.2)
             
             
             let bucketImage = UIImage(named:"bucket_texture.png")
