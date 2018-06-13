@@ -15,12 +15,13 @@
 		9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */; };
 		9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D720C0E7B900D32095 /* Main.storyboard */; };
 		9A1FE1DC20C0E7B900D32095 /* firecracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DA20C0E7B900D32095 /* firecracker.xcdatamodeld */; };
-		9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
 		9A1FE1E120C0E7BA00D32095 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DF20C0E7BA00D32095 /* LaunchScreen.storyboard */; };
 		9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1ED20C1A83500D32095 /* purple_firecracker.jpg */; };
 		9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */; };
 		9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */; };
 		9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */; };
+		9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4077FA20D0C2010038C787 /* launchScreen.png */; };
+		9A4077FC20D0C4C40038C787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
 		9A66FC6020C300B600FFAF65 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5E20C300B600FFAF65 /* spark.png */; };
 		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
 		9AA944C120C306380003E31D /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C020C306380003E31D /* Explode.scnp */; };
@@ -50,6 +51,7 @@
 		9A1FE1EE20C1A83500D32095 /* red_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = red_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gray_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue_firecracker.jpg; sourceTree = "<group>"; };
+		9A4077FA20D0C2010038C787 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
 		9A66FC5E20C300B600FFAF65 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
 		9AA944C020C306380003E31D /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		9A66FC5D20C3002300FFAF65 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				9A4077FA20D0C2010038C787 /* launchScreen.png */,
 				9A66FC5E20C300B600FFAF65 /* spark.png */,
 				9AA944C220C306530003E31D /* CircleParticle.png */,
 				9AA944C020C306380003E31D /* Explode.scnp */,
@@ -221,9 +224,9 @@
 			files = (
 				9A1FE1E120C0E7BA00D32095 /* LaunchScreen.storyboard in Resources */,
 				9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */,
+				9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */,
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
-				9A1FE1DE20C0E7BA00D32095 /* Assets.xcassets in Resources */,
 				4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
@@ -233,6 +236,7 @@
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
 				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
+				9A4077FC20D0C4C40038C787 /* Assets.xcassets in Resources */,
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,
 				4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */,
 				4C6581C720CB64360093F69D /* sticky note.scn in Resources */,
