@@ -18,7 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </arscnView>
-                    <tabBarItem key="tabBarItem" title="擲筊" id="RHm-nU-Rfb"/>
+                    <tabBarItem key="tabBarItem" title="" image="yin-yang" id="RHm-nU-Rfb">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-13"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="ARView" destination="fOe-7L-65q" id="PAK-XN-muQ"/>
                     </connections>
@@ -35,6 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="heC-Ju-zuz"/>
@@ -56,7 +59,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="鞭炮" id="7TG-Ea-i6b"/>
+                    <tabBarItem key="tabBarItem" title="" image="firecracker" id="7TG-Ea-i6b">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-13"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -66,11 +71,19 @@
         <scene sceneID="iRD-a5-l4p">
             <objects>
                 <viewControllerPlaceholder storyboardName="PaperMoney" id="Vef-4y-jCY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="EmK-TX-B0b"/>
+                    <tabBarItem key="tabBarItem" title="" image="bucketLine" id="EmK-TX-B0b">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32r-i4-g4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1529" y="-306"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bucketLine" width="34" height="34"/>
+        <image name="firecracker" width="32" height="31"/>
+        <image name="yin-yang" width="26" height="26"/>
+    </resources>
+    <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
