@@ -87,18 +87,19 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     }
     
     func setupButtons() {
-        // explodeBuddon setup
-//        explodeButton.setTitle("Explode", for: .normal)
-//        explodeButton.setTitleColor(.white, for: .normal)
-//        explodeButton.backgroundColor = UIColor(red: 207/255,
-//                                                green: 30/255,
-//                                                blue: 80/255,
-//                                                alpha: 0.6)
-//        explodeButton.frame.size = CGSize(width: 80, height: 40)
-//        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
-//        explodeButton.layer.cornerRadius = 10
-//        explodeButton.isEnabled = true
-//        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+//         explodeBuddon setup
+        explodeButton.setTitle("Explode", for: .normal)
+        explodeButton.setTitleColor(.white, for: .normal)
+        explodeButton.backgroundColor = UIColor(red: 207/255,
+                                                green: 30/255,
+                                                blue: 80/255,
+                                                alpha: 0.6)
+        explodeButton.frame.size = CGSize(width: 80, height: 40)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+        explodeButton.layer.cornerRadius = 10
+        explodeButton.isEnabled = true
+        explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
+        
         let bottomCenter = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
         // planeToggle setup
         planeToggle = UISwitch()
@@ -127,8 +128,8 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
 //            x: explodeButton.center.x + 100,
 //            y: explodeButton.center.y)
 //
-        
-//        self.view.addSubview(explodeButton)
+        explodeButton.isHidden = true
+        self.view.addSubview(explodeButton)
 //        self.view.addSubview(stopButton)
         self.view.addSubview(planeToggle)
     }
@@ -138,7 +139,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     }
     
     @objc func explodeButtonDidClick(_ sender: Any) {
-        
+        explodeButton.isHidden = true;
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
@@ -240,15 +241,15 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
             var leftMoonBlockStatus = 1
             rightBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             leftBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                 self.rightBlock.physicsBody = SCNPhysicsBody.static()
                 self.leftBlock.physicsBody = SCNPhysicsBody.static()
                 
                 
-                if (self.rightBlock.eulerAngles.z > .pi / 2){
+                if (self.rightBlock.eulerAngles.x > 0){
                     rightMoonBlockStatus = 1
                 }
-                else if (self.rightBlock.eulerAngles.z < .pi / 2){
+                else if (self.rightBlock.eulerAngles.x < 0){
                     rightMoonBlockStatus = -1
                 }
                 else{
@@ -256,10 +257,10 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
                 }
                 
                 
-                if (self.leftBlock.eulerAngles.z > .pi / 2){
+                if (self.leftBlock.eulerAngles.x > 0){
                     leftMoonBlockStatus = 1
                 }
-                else if(self.rightBlock.eulerAngles.z > .pi / 2){
+                else if(self.leftBlock.eulerAngles.x < 0){
                     leftMoonBlockStatus = -1
                 }
                 else{
@@ -269,12 +270,21 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
                 
                 if(rightMoonBlockStatus*leftMoonBlockStatus<0){
                     //正
+                    self.explodeButton.setTitle("聖筊", for: .normal)
+                    self.explodeButton.isHidden = false
+                    print("聖筊")
                 }
                 else if(rightMoonBlockStatus*leftMoonBlockStatus>0){
                     //反
+                    self.explodeButton.setTitle("沒筊", for: .normal)
+                    self.explodeButton.isHidden = false
+                    print("沒筊")
                 }
                 else{
                     //立
+                    self.explodeButton.setTitle("立筊", for: .normal)
+                    self.explodeButton.isHidden = false
+                    print("立筊")
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
                     self.rightBlock.physicsBody?.isAffectedByGravity = false
@@ -356,6 +366,7 @@ extension MoonBlockViewController: ARSCNViewDelegate {
             leftBlock.transform = transform
             leftBlock.scale = SCNVector3(0.001, 0.001, 0.001)
             leftBlock.eulerAngles.x = leftBlock.eulerAngles.x - .pi / 2
+            self.explodeButton.isHidden = true
         }
     }
     
