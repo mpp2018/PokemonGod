@@ -46,6 +46,8 @@ class FirecrackerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         previousTranslation = float3(0.0,0.0,0.0)
         setupScene()
@@ -65,6 +67,11 @@ class FirecrackerViewController: UIViewController {
         sceneView.session.pause()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.player?.stop()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,7 +86,7 @@ class FirecrackerViewController: UIViewController {
                                                 blue: 80/255,
                                                 alpha: 0.6)
         explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         explodeButton.layer.cornerRadius = 10
         explodeButton.isEnabled = true
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
@@ -142,7 +149,6 @@ class FirecrackerViewController: UIViewController {
     func setupScene() {
         sceneView = ARSCNView(frame: self.view.bounds)
         sceneView.showsStatistics = true
-//        addTapGestureToSceneView()
         addPanGestureToSceneView()
         configureLighting()
         sceneView.delegate = self
@@ -492,15 +498,13 @@ extension FirecrackerViewController:SCNPhysicsContactDelegate {
 }
 
 extension FirecrackerViewController:UIGestureRecognizerDelegate {
-//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//
-//    }
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-//
-//    }
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-//
-//    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
+        -> Bool {
+           
+            return true
+    }
 }
 extension float4x4 {
     

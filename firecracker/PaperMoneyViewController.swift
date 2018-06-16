@@ -28,8 +28,11 @@ class PaperMoneyViewController: UIViewController {
     private var bucketNode = SCNNode()
     private var extinguishTime:TimeInterval = 0
     private var currentTime:TimeInterval = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         guard ARWorldTrackingConfiguration.isSupported else {
             fatalError("""
@@ -329,6 +332,16 @@ extension PaperMoneyViewController:ARSessionDelegate {
         resetTracking()
     }
 }
+
+extension PaperMoneyViewController:UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
+        -> Bool {
+            return true
+    }
+}
+
 
 extension PaperMoneyViewController: SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didEnd contact: SCNPhysicsContact) {

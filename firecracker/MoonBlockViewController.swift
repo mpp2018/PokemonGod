@@ -24,6 +24,8 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         // Set the view's delegate
         // Create a session configuration
@@ -382,4 +384,16 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         let physicsBody = SCNPhysicsBody(type: type, shape: shape)
         node.physicsBody = physicsBody
     }
+}
+extension MoonBlockViewController:UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
+        -> Bool {
+            
+            return true
+    }
+}
+
+extension MoonBlockViewController:SCNPhysicsContactDelegate {
+    
 }
