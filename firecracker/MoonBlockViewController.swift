@@ -155,49 +155,6 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         
     }
     
-    func getMoonBlock() {
-        
-        guard let centerPoint = sceneView.pointOfView else {
-            return
-        }
-        
-        let cameraTransform = centerPoint.transform
-        let cameraLocation = SCNVector3(x: cameraTransform.m41, y: cameraTransform.m42, z: cameraTransform.m43)
-        let cameraOrientation = SCNVector3(x: -cameraTransform.m31, y: -cameraTransform.m32, z: -cameraTransform.m33)
-        
-        
-        let cameraPosition = SCNVector3Make(
-            cameraLocation.x + cameraOrientation.x,
-            cameraLocation.y + cameraOrientation.y,
-            cameraLocation.z + cameraOrientation.z)
-        
-        print(cameraLocation)
-        print(cameraOrientation)
-        print(cameraPosition)
-        
-        let moonBlockScene = SCNScene(named: "CrescentMoon.scn")!
-        rightBlock = moonBlockScene.rootNode.childNode(withName: "right_block", recursively: true)!
-        let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
-        rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
-        leftBlock = moonBlockScene.rootNode.childNode(withName: "left_block", recursively: true)!
-        let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options: [.type: SCNPhysicsShape.ShapeType.convexHull])
-        leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
-        
-        //add light
-        let light = moonBlockScene.rootNode.childNode(withName: "omni",recursively: true)!
-        light.position = SCNVector3(0, 20, 0)
-        
-        sceneView.scene.rootNode.addChildNode(rightBlock)
-        sceneView.scene.rootNode.addChildNode(leftBlock)
-        
-        rightBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, 5, 0), cameraTransform)
-        leftBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, -5, 0), cameraTransform)
-//
-//        let forceVector:Float = 5
-//        ballNode.physicsBody?.applyForce(SCNVector3(x: cameraOrientation.x * forceVector, y: cameraOrientation.y * forceVector, z: cameraOrientation.z * forceVector), asImpulse: true)
-//        BallNodesArray.append(ballNode)
-//        sceneView.scene.rootNode.addChildNode(ballNode)
-    }
     
     func changePlaneColor() {
         if planeToggle.isOn {
@@ -324,6 +281,7 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         plane.materials.first?.diffuse.contents = planeColor
         
         var planeNode = SCNNode(geometry: plane)
+        planeNode.name = "plane"
         
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
