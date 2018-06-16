@@ -10,8 +10,7 @@ import ARKit
 import UIKit
 
 class PaperMoneyViewController: UIViewController {
-    
-    @IBOutlet weak var sceneView: ARSCNView!
+    private var sceneView:ARSCNView!
     
     var paper: SCNNode?
     /// Convenience accessor for the session owned by ARSCNView.
@@ -46,26 +45,37 @@ class PaperMoneyViewController: UIViewController {
         
         // Set a delegate to track the number of plane anchors for providing UI feedback.
     
+        setupScene()
         setupButtons()
-        sceneView.session.delegate = self
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        sceneView.scene.physicsWorld.contactDelegate = self
-        #if DEBUG
-        // Show debug UI to view performance metrics (e.g. frames per second).
-        sceneView.showsStatistics = true
-        #endif
+        addTapGesturesToSceneView()
         
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+        
+        
+    }
+    
+    func setupScene() {
+        sceneView = ARSCNView(frame: self.view.bounds)
+        sceneView.delegate = self
+        sceneView.session.delegate = self
+        sceneView.showsStatistics = true
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneView.scene.physicsWorld.contactDelegate = self
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+        self.view.addSubview(sceneView)
+    }
+    
+    func addTapGesturesToSceneView() {
         let tapGesture = UITapGestureRecognizer()
         
         tapGesture.numberOfTapsRequired = 1
         tapGesture.numberOfTouchesRequired = 1
+        tapGesture.addTarget(self, action: #selector(didTap(recognizer:)))
         
         sceneView.addGestureRecognizer(tapGesture)
         
-        tapGesture.addTarget(self, action: #selector(didTap(recognizer:)))
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         resetTracking()
@@ -105,7 +115,7 @@ class PaperMoneyViewController: UIViewController {
                                                 blue: 80/255,
                                                 alpha: 0.6)
         fireButton.frame.size = CGSize(width: 80, height: 40)
-        fireButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+        fireButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         fireButton.layer.cornerRadius = 10
         fireButton.isEnabled = true
         fireButton.addTarget(self, action: #selector(fireButtonDidClick(_:)), for: .touchUpInside)
@@ -310,7 +320,7 @@ extension PaperMoneyViewController:ARSessionDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required.
         print("Session interruption ended")
-        resetTracking()
+//        resetTracking()
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {

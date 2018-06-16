@@ -20,8 +20,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     private var stopButton = UIButton()
     private var planeColor:UIColor!
     private var planes:[SCNNode] = []
-    
-    @IBOutlet weak var ARView: ARSCNView!
+    private var sceneView:ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,28 +30,36 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 
+        setupScene()
         setupButtons()
-        ARView.delegate = self
-        ARView.showsStatistics = true
-        ARView.session.delegate = self
-        ARView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-        // Run the view's session
-        ARView.session.run(configuration)
         addSwipeGesturesToSceneView()
     }
+    
+    func setupScene() {
+        sceneView = ARSCNView(frame: self.view.bounds)
+        sceneView.delegate = self
+        sceneView.session.delegate = self
+        sceneView.showsStatistics = true
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneView.scene.physicsWorld.contactDelegate = self
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
+        self.view.addSubview(sceneView)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
-        ARView.session.run(configuration)
+        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-        ARView.session.pause()
+        sceneView.session.pause()
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,12 +102,12 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
                                                 blue: 80/255,
                                                 alpha: 0.6)
         explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         explodeButton.layer.cornerRadius = 10
         explodeButton.isEnabled = true
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
         
-        let bottomCenter = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.85)
+        let bottomCenter = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         // planeToggle setup
         planeToggle = UISwitch()
         planeToggle.isOn = true
@@ -148,7 +155,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     
     func getMoonBlock() {
         
-        guard let centerPoint = ARView.pointOfView else {
+        guard let centerPoint = sceneView.pointOfView else {
             return
         }
         
@@ -178,8 +185,8 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         let light = moonBlockScene.rootNode.childNode(withName: "omni",recursively: true)!
         light.position = SCNVector3(0, 20, 0)
         
-        ARView.scene.rootNode.addChildNode(rightBlock)
-        ARView.scene.rootNode.addChildNode(leftBlock)
+        sceneView.scene.rootNode.addChildNode(rightBlock)
+        sceneView.scene.rootNode.addChildNode(leftBlock)
         
         rightBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, 5, 0), cameraTransform)
         leftBlock.transform = SCNMatrix4Mult(SCNMatrix4MakeTranslation(0, -5, 0), cameraTransform)
@@ -220,12 +227,12 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         let light = moonBlockScene.rootNode.childNode(withName: "omni",recursively: true)!
         light.position = SCNVector3(0, 20, 0)
         
-        ARView.scene.rootNode.addChildNode(rightBlock)
-        ARView.scene.rootNode.addChildNode(leftBlock)
+        sceneView.scene.rootNode.addChildNode(rightBlock)
+        sceneView.scene.rootNode.addChildNode(leftBlock)
     }
     
     @objc func throwMoonBlock(withGestureRecognizer recognizer: UIGestureRecognizer){
-        let currentTransform = ARView.session.currentFrame?.camera.transform
+        let currentTransform = sceneView.session.currentFrame?.camera.transform
         //guard recognizer.state == .ended else { return }
         if(!throwing){
             throwing = true
@@ -299,7 +306,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
     func addSwipeGesturesToSceneView() {
         let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MoonBlockViewController.throwMoonBlock(withGestureRecognizer:)))
         swipeUpGestureRecognizer.direction = .up
-        ARView.addGestureRecognizer(swipeUpGestureRecognizer)
+        sceneView.addGestureRecognizer(swipeUpGestureRecognizer)
         
     }
 }
