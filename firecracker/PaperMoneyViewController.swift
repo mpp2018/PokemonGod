@@ -292,7 +292,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         currentTime = time
         if extinguishTime == 0.0 {
-            extinguishTime = time + 5
+            extinguishTime = time + 10
         }
         
         if extinguishTime < time {

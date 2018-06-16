@@ -103,8 +103,8 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
                                                 green: 30/255,
                                                 blue: 80/255,
                                                 alpha: 0.6)
-        explodeButton.frame.size = CGSize(width: 80, height: 40)
-        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        explodeButton.frame.size = CGSize(width: 120, height: 60)
+        explodeButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.1)
         explodeButton.layer.cornerRadius = 10
         explodeButton.isEnabled = true
         explodeButton.addTarget(self, action: #selector(explodeButtonDidClick(_:)), for: .touchUpInside)
@@ -327,10 +327,10 @@ extension MoonBlockViewController: ARSCNViewDelegate {
         //let position = SCNVector3(pos.columns.3.x, pos.columns.3.y, pos.columns.3.z - 0.3)
         if (!throwing){
             rightBlock.transform = transform
-            rightBlock.scale = SCNVector3(0.001, 0.001, 0.001)
+            rightBlock.scale = SCNVector3(0.002, 0.002, 0.002)
             rightBlock.eulerAngles.x = rightBlock.eulerAngles.x + .pi / 2
             leftBlock.transform = transform
-            leftBlock.scale = SCNVector3(0.001, 0.001, 0.001)
+            leftBlock.scale = SCNVector3(0.002, 0.002, 0.002)
             leftBlock.eulerAngles.x = leftBlock.eulerAngles.x - .pi / 2
             self.explodeButton.isHidden = true
         }
