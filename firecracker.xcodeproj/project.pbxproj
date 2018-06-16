@@ -23,6 +23,7 @@
 		9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4077FA20D0C2010038C787 /* launchScreen.png */; };
 		9A4077FC20D0C4C40038C787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
 		9A5DDD6D20D4325E00EDDD4E /* bucket.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9A5DDD6C20D4325D00EDDD4E /* bucket.scn */; };
+		9A5DDD7120D4B66900EDDD4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */; };
 		9A66FC6020C300B600FFAF65 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5E20C300B600FFAF65 /* spark.png */; };
 		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
 		9AA944C120C306380003E31D /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C020C306380003E31D /* Explode.scnp */; };
@@ -56,6 +57,7 @@
 		9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue_firecracker.jpg; sourceTree = "<group>"; };
 		9A4077FA20D0C2010038C787 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
 		9A5DDD6C20D4325D00EDDD4E /* bucket.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = bucket.scn; path = ../../../PokemonGOD/PokemonGOD/Images/bucket.scn; sourceTree = "<group>"; };
+		9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9A66FC5E20C300B600FFAF65 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
 		9AA944C020C306380003E31D /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */,
 				9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */,
 				9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */,
+				9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */,
 				9A1FE1D720C0E7B900D32095 /* Main.storyboard */,
 				9A66FC5D20C3002300FFAF65 /* Particles */,
 				9A1FE1F520C1A83E00D32095 /* Models */,
@@ -277,6 +280,7 @@
 				9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */,
 				9ABC940720C7EB10005724C5 /* MoonBlockViewController.swift in Sources */,
 				9ABC940920C7EB20005724C5 /* PaperMoneyViewController.swift in Sources */,
+				9A5DDD7120D4B66900EDDD4E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
