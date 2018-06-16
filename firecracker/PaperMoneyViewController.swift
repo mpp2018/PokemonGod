@@ -229,7 +229,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             planeNode.eulerAngles.x = -.pi/2
             node.addChildNode(planeNode)
             planes.append(planeNode)
-            let cylinder = SCNCylinder(radius: 0.1, height: 0.2)
+            let cylinder = SCNCylinder(radius: 0.05, height: 0.1)
             
             
             let bucketImage = UIImage(named:"bucket_texture.png")
@@ -242,6 +242,11 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             bucket.physicsBody?.collisionBitMask = 0
             bucket.physicsBody?.contactTestBitMask = 1
             
+            let bucketReal = SCNScene(named: "bucket.scn")!
+            let bucketNode2 = bucketReal.rootNode.childNode(withName: "bucket", recursively: true)!
+            bucketNode2.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z)
+            
+            
             guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
                 assert(false)
             }
@@ -249,6 +254,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             bucket.addParticleSystem(fire)
             bucketNode = bucket
             node.addChildNode(bucket)
+            node.addChildNode(bucketNode2)
         }
     }
     
