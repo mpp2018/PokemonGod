@@ -214,15 +214,54 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
         }
         
     }
+    func getMoonBlockResult() -> String {
+        
+        var resultText = "沒筊"
+        
+        guard let rightOmni = rightBlock.childNode(withName: "omni", recursively: true), let rightDirection = rightBlock.childNode(withName: "direction", recursively: true), let leftOmni = leftBlock.childNode(withName: "omni", recursively: true), let leftDirection = leftBlock.childNode(withName: "direction", recursively: true) else {
+            return resultText
+        }
+        
+        var leftResult  = 0
+        var rightResult = 0
+        
+        if rightOmni.presentation.simdWorldPosition.y > rightDirection.presentation.simdWorldPosition.y {
+           rightResult = 1
+        } else if rightOmni.presentation.simdWorldPosition.y < rightDirection.presentation.simdWorldPosition.y {
+            rightResult = -1
+        }
+        
+        if leftOmni.presentation.simdWorldPosition.y > leftDirection.presentation.simdWorldPosition.y {
+           leftResult = 1
+        } else if leftOmni.presentation.simdWorldPosition.y < leftDirection.presentation.simdWorldPosition.y {
+           leftResult = -1
+        }
+        
+        let result = leftResult + rightResult
+        
+        if result == 2 {
+            resultText = "陰筊"
+        } else if result == 0 {
+            resultText = "聖筊"
+        } else if result == -2 {
+            resultText = "笑筊"
+        } else {
+            resultText = "立筊"
+        }
+        
+        return resultText
+    }
     
     func addMoonBlock() {
         let moonBlockScene = SCNScene(named: "CrescentMoon.scn")!
         
         rightBlock = moonBlockScene.rootNode.childNode(withName: "right_block", recursively: true)!
+        
         let rightShape = SCNPhysicsShape(geometry: (rightBlock.geometry)!, options:nil)
         rightBlock.physicsBody = SCNPhysicsBody(type: .static, shape: rightShape)
         
         leftBlock = moonBlockScene.rootNode.childNode(withName: "left_block", recursively: true)!
+        
         let leftShape = SCNPhysicsShape(geometry: (leftBlock.geometry)!, options:nil)
         leftBlock.physicsBody = SCNPhysicsBody(type: .static, shape: leftShape)
         
@@ -244,55 +283,17 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
             let forceScale = Float(1)
             let angle = Float(30.0 / 180 * Double.pi)
             let relatedForce = currentTransform! * simd_float4x4(SCNMatrix4Rotate(SCNMatrix4Identity, Float.pi / 2, 0, 0, 1)) * float4(0, forceScale*sin(angle), -forceScale*cos(angle), 1)
-            var rightMoonBlockStatus = 1
-            var leftMoonBlockStatus = 1
             rightBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             leftBlock.physicsBody?.applyForce(SCNVector3(relatedForce.x , relatedForce.y, relatedForce.z), asImpulse: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
                 self.rightBlock.physicsBody = SCNPhysicsBody.static()
                 self.leftBlock.physicsBody = SCNPhysicsBody.static()
                 
+                let resultText = self.getMoonBlockResult()
+                self.explodeButton.setTitle(resultText, for: .normal)
+                self.explodeButton.isHidden = false
+                print(resultText)
                 
-                if (self.rightBlock.eulerAngles.x > 0){
-                    rightMoonBlockStatus = 1
-                }
-                else if (self.rightBlock.eulerAngles.x < 0){
-                    rightMoonBlockStatus = -1
-                }
-                else{
-                    rightMoonBlockStatus = 0
-                }
-                
-                
-                if (self.leftBlock.eulerAngles.x > 0){
-                    leftMoonBlockStatus = 1
-                }
-                else if(self.leftBlock.eulerAngles.x < 0){
-                    leftMoonBlockStatus = -1
-                }
-                else{
-                    leftMoonBlockStatus = 0
-                }
-                
-                
-                if(rightMoonBlockStatus*leftMoonBlockStatus<0){
-                    //正
-                    self.explodeButton.setTitle("聖筊", for: .normal)
-                    self.explodeButton.isHidden = false
-                    print("聖筊")
-                }
-                else if(rightMoonBlockStatus*leftMoonBlockStatus>0){
-                    //反
-                    self.explodeButton.setTitle("沒筊", for: .normal)
-                    self.explodeButton.isHidden = false
-                    print("沒筊")
-                }
-                else{
-                    //立
-                    self.explodeButton.setTitle("立筊", for: .normal)
-                    self.explodeButton.isHidden = false
-                    print("立筊")
-                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
                     self.rightBlock.physicsBody?.isAffectedByGravity = false
                     self.leftBlock.physicsBody?.isAffectedByGravity = false
