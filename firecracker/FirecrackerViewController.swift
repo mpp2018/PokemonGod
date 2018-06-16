@@ -369,12 +369,14 @@ class FirecrackerViewController: UIViewController {
     }
     
     func changePlaneColor() {
-        if !planeToggle.isOn {
+        if planeToggle.isOn {
             planeColor = UIColor.clear
             planeToggle.isOn = false
+            sceneView.debugOptions = []
         } else {
             planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
             planeToggle.isOn = true
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
         for node in planes {
             node.geometry?.materials.first?.diffuse.contents = planeColor

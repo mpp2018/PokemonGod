@@ -174,13 +174,16 @@ class PaperMoneyViewController: UIViewController {
     }
     
     func changePlaneColor() {
-        if !planeToggle.isOn {
+        if planeToggle.isOn {
             planeColor = UIColor.clear
             planeToggle.isOn = false
+            sceneView.debugOptions = []
         } else {
             planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
             planeToggle.isOn = true
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
+        
         for node in planes {
             node.geometry?.materials.first?.diffuse.contents = planeColor
         }
@@ -242,10 +245,10 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             planeNode.eulerAngles.x = -.pi/2
             node.addChildNode(planeNode)
             planes.append(planeNode)
-            let cylinder = SCNCylinder(radius: 0.05, height: 0.1)
+            let cylinder = SCNCylinder(radius: 0.1, height: 0.3)
             
             
-            let bucketImage = UIImage(named:"bucket_texture.png")
+            let bucketImage = UIColor.clear
             cylinder.firstMaterial?.diffuse.contents = bucketImage
             let bucket = SCNNode(geometry: cylinder)
             bucket.name = "bucket"
