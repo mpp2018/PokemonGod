@@ -22,7 +22,6 @@
 		9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */; };
 		9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A4077FA20D0C2010038C787 /* launchScreen.png */; };
 		9A4077FC20D0C4C40038C787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1DD20C0E7BA00D32095 /* Assets.xcassets */; };
-		9A5DDD6D20D4325E00EDDD4E /* bucket.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9A5DDD6C20D4325D00EDDD4E /* bucket.scn */; };
 		9A5DDD7120D4B66900EDDD4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */; };
 		9A66FC6020C300B600FFAF65 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5E20C300B600FFAF65 /* spark.png */; };
 		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
@@ -35,6 +34,7 @@
 		9ACF9ECC20D061C800C7BE2A /* firecracker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */; };
 		9AED313B20D2EA7300149FD7 /* dark_gray.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */; };
 		9AED314D20D2F3ED00149FD7 /* Bucket Wooden.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */; };
+		9AEF06EE20D6566400CF738B /* bucket.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06ED20D6566400CF738B /* bucket.scn */; };
 		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +56,6 @@
 		9A1FE1EF20C1A83500D32095 /* gray_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gray_firecracker.jpg; sourceTree = "<group>"; };
 		9A1FE1F020C1A83600D32095 /* blue_firecracker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue_firecracker.jpg; sourceTree = "<group>"; };
 		9A4077FA20D0C2010038C787 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
-		9A5DDD6C20D4325D00EDDD4E /* bucket.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = bucket.scn; path = ../../../PokemonGOD/PokemonGOD/Images/bucket.scn; sourceTree = "<group>"; };
 		9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9A66FC5E20C300B600FFAF65 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = firecracker.mp3; sourceTree = "<group>"; };
 		9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dark_gray.jpeg; sourceTree = "<group>"; };
 		9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bucket Wooden.obj"; sourceTree = "<group>"; };
+		9AEF06ED20D6566400CF738B /* bucket.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bucket.scn; sourceTree = "<group>"; };
 		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +147,7 @@
 				9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */,
 				9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */,
 				9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */,
-				9A5DDD6C20D4325D00EDDD4E /* bucket.scn */,
+				9AEF06ED20D6566400CF738B /* bucket.scn */,
 				A080237120CEACCB0026E0F6 /* CrescentMoon.scn */,
 			);
 			path = Models;
@@ -247,7 +247,7 @@
 				9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */,
 				9AED314D20D2F3ED00149FD7 /* Bucket Wooden.obj in Resources */,
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
-				9A5DDD6D20D4325E00EDDD4E /* bucket.scn in Resources */,
+				9AEF06EE20D6566400CF738B /* bucket.scn in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
 				4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
