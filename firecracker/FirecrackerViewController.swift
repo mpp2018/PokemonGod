@@ -52,6 +52,7 @@ class FirecrackerViewController: UIViewController {
         previousTranslation = float3(0.0,0.0,0.0)
         setupScene()
         setupButtons()
+        changePlaneColor()
         
         
         
