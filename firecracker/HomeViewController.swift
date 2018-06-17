@@ -96,8 +96,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func fireworkButtonDidClick(_ sender: Any) {
-//        let pushViewController = FireworkViewController()
-//        navigationController?.pushViewController(pushViewController, animated: true)
+        let pushViewController = FireworkViewController()
+        navigationController?.pushViewController(pushViewController, animated: true)
     }
     
     @objc func paperMoneyButtonDidClick(_ sender: Any) {

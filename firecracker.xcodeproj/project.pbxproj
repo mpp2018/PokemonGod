@@ -33,8 +33,12 @@
 		9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */; };
 		9ACF9ECC20D061C800C7BE2A /* firecracker.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */; };
 		9AED313B20D2EA7300149FD7 /* dark_gray.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */; };
-		9AED314D20D2F3ED00149FD7 /* Bucket Wooden.obj in Resources */ = {isa = PBXBuildFile; fileRef = 9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */; };
 		9AEF06EE20D6566400CF738B /* bucket.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06ED20D6566400CF738B /* bucket.scn */; };
+		9AEF06F620D6BB7100CF738B /* reactor.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06F520D6BB7100CF738B /* reactor.scnp */; };
+		9AEF06F820D6BB7E00CF738B /* chineseFirework.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06F720D6BB7E00CF738B /* chineseFirework.scn */; };
+		9AEF06FA20D6BB9A00CF738B /* FireworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF06F920D6BB9900CF738B /* FireworkViewController.swift */; };
+		9AEF06FC20D6BBB600CF738B /* YUARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF06FB20D6BBB600CF738B /* YUARViewController.swift */; };
+		9AEF06FE20D6BC8800CF738B /* blu e rosso.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06FD20D6BC8800CF738B /* blu e rosso.jpg */; };
 		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +71,12 @@
 		9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bucket_texture.png; sourceTree = "<group>"; };
 		9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = firecracker.mp3; sourceTree = "<group>"; };
 		9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dark_gray.jpeg; sourceTree = "<group>"; };
-		9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Bucket Wooden.obj"; sourceTree = "<group>"; };
 		9AEF06ED20D6566400CF738B /* bucket.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bucket.scn; sourceTree = "<group>"; };
+		9AEF06F520D6BB7100CF738B /* reactor.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = reactor.scnp; sourceTree = "<group>"; };
+		9AEF06F720D6BB7E00CF738B /* chineseFirework.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = chineseFirework.scn; sourceTree = "<group>"; };
+		9AEF06F920D6BB9900CF738B /* FireworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkViewController.swift; sourceTree = "<group>"; };
+		9AEF06FB20D6BBB600CF738B /* YUARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YUARViewController.swift; sourceTree = "<group>"; };
+		9AEF06FD20D6BC8800CF738B /* blu e rosso.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "blu e rosso.jpg"; sourceTree = "<group>"; };
 		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +133,8 @@
 				9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */,
 				9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */,
 				9ABC940820C7EB20005724C5 /* PaperMoneyViewController.swift */,
+				9AEF06FB20D6BBB600CF738B /* YUARViewController.swift */,
+				9AEF06F920D6BB9900CF738B /* FireworkViewController.swift */,
 				9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */,
 				9A1FE1D720C0E7B900D32095 /* Main.storyboard */,
 				9A66FC5D20C3002300FFAF65 /* Particles */,
@@ -143,10 +153,11 @@
 			children = (
 				4C6581C020CB64360093F69D /* sticky note */,
 				9AC4BE5B20C44D8200259387 /* firebox.png */,
+				9AEF06FD20D6BC8800CF738B /* blu e rosso.jpg */,
 				9A27EA6320D3971F00806A34 /* firecracker */,
 				9ACF9EC920D057CD00C7BE2A /* bucket_texture.png */,
 				9AED313A20D2EA7300149FD7 /* dark_gray.jpeg */,
-				9AED314B20D2F3ED00149FD7 /* Bucket Wooden.obj */,
+				9AEF06F720D6BB7E00CF738B /* chineseFirework.scn */,
 				9AEF06ED20D6566400CF738B /* bucket.scn */,
 				A080237120CEACCB0026E0F6 /* CrescentMoon.scn */,
 			);
@@ -170,6 +181,7 @@
 				9A4077FA20D0C2010038C787 /* launchScreen.png */,
 				9A66FC5E20C300B600FFAF65 /* spark.png */,
 				9AA944C220C306530003E31D /* CircleParticle.png */,
+				9AEF06F520D6BB7100CF738B /* reactor.scnp */,
 				9AA944C020C306380003E31D /* Explode.scnp */,
 				9A66FC5F20C300B600FFAF65 /* fire.scnp */,
 			);
@@ -243,11 +255,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1FE1E120C0E7BA00D32095 /* LaunchScreen.storyboard in Resources */,
+				9AEF06F820D6BB7E00CF738B /* chineseFirework.scn in Resources */,
 				9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */,
 				9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */,
-				9AED314D20D2F3ED00149FD7 /* Bucket Wooden.obj in Resources */,
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
+				9AEF06FE20D6BC8800CF738B /* blu e rosso.jpg in Resources */,
 				9AEF06EE20D6566400CF738B /* bucket.scn in Resources */,
+				9AEF06F620D6BB7100CF738B /* reactor.scnp in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
 				4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
@@ -275,8 +289,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEF06FA20D6BB9A00CF738B /* FireworkViewController.swift in Sources */,
 				9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */,
 				9A1FE1DC20C0E7B900D32095 /* firecracker.xcdatamodeld in Sources */,
+				9AEF06FC20D6BBB600CF738B /* YUARViewController.swift in Sources */,
 				9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */,
 				9ABC940720C7EB10005724C5 /* MoonBlockViewController.swift in Sources */,
 				9ABC940920C7EB20005724C5 /* PaperMoneyViewController.swift in Sources */,
