@@ -34,7 +34,7 @@ class MoonBlockViewController: UIViewController, ARSKViewDelegate, ARSessionDele
 
         setupScene()
         setupButtons()
-        changePlaneColor()
+//        changePlaneColor()
         addSwipeGesturesToSceneView()
     }
     

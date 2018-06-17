@@ -50,7 +50,7 @@ class PaperMoneyViewController: UIViewController {
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         setupScene()
         setupButtons()
-        changePlaneColor()
+//        changePlaneColor()
         addTapGesturesToSceneView()
         
         
