@@ -132,9 +132,11 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
         if !planeToggle.isOn {
             planeColor = UIColor.clear
             sceneView.debugOptions = []
+            sceneView.showsStatistics = false
             planeToggle.isOn = false
         } else {
             planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+            sceneView.showsStatistics = true
             sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
             planeToggle.isOn = true
         }
