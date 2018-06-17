@@ -13,7 +13,8 @@ import ARKit
 class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
     var sceneView:ARSCNView!
     var planeToggle = UISwitch()
-    
+    var middleButton = UIButton()
+    var rightButton = UIButton()
     var planeColor:UIColor!
     var planeNodes:[SCNNode] = []
     
@@ -97,8 +98,37 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
     }
-    
     func setupButtons() {
+        // middleButton setup
+        middleButton.setTitle("Middle", for: .normal)
+        middleButton.setTitleColor(.white, for: .normal)
+        middleButton.backgroundColor = UIColor(red: 207/255,
+                                                green: 30/255,
+                                                blue: 80/255,
+                                                alpha: 0.6)
+        middleButton.frame.size = CGSize(width: 80, height: 40)
+        middleButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
+        middleButton.layer.cornerRadius = 10
+        middleButton.isEnabled = true
+        middleButton.addTarget(self, action: #selector(middleButtonDidClick(_:)), for: .touchUpInside)
+        
+        
+        // rightButton setup
+        rightButton.setTitle("Right", for: .normal)
+        rightButton.setTitleColor(UIColor.white, for: .normal)
+        rightButton.isEnabled = true
+        rightButton.backgroundColor = UIColor(red: 252/255, green: 88/255, blue: 60/255, alpha: 0.8)
+        rightButton.layer.cornerRadius = 10;
+        rightButton.addTarget(
+            self,
+            action: #selector(rightButtonDidClick(_:)),
+            for: .touchUpInside)
+        rightButton.frame.size.height = 40
+        rightButton.frame.size.width = 80
+        rightButton.center = CGPoint(
+            x: middleButton.center.x + 100,
+            y: middleButton.center.y)
+        
         let bottomCenter = CGPoint(x: self.view.center.x, y: self.view.frame.height * 0.9)
         // planeToggle setup
         planeToggle = UISwitch()
@@ -109,8 +139,10 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
         planeToggle.center = CGPoint(x: bottomCenter.x - 100,
                                      y: bottomCenter.y)
         planeToggle.addTarget(self, action: #selector(planeToggleDidClick(_:)), for: .valueChanged)
-    self.view.addSubview(planeToggle)
         
+        self.view.addSubview(planeToggle)
+        self.view.addSubview(middleButton)
+        self.view.addSubview(rightButton)
     }
     
     @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
@@ -118,6 +150,14 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
             print("Screen edge swiped!")
             
         }
+    }
+    
+    
+    @objc func middleButtonDidClick(_ sender: Any) {
+    }
+    
+    
+    @objc func rightButtonDidClick(_ sender: Any) {
     }
     
     @objc func planeToggleDidClick(_ sender: Any) {
