@@ -47,13 +47,13 @@ class PaperMoneyViewController: UIViewController {
         }
         
         // Set a delegate to track the number of plane anchors for providing UI feedback.
-    
+        planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         setupScene()
         setupButtons()
         changePlaneColor()
         addTapGesturesToSceneView()
         
-        planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
+        
         
         
     }
