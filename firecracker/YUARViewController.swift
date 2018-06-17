@@ -21,11 +21,6 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-//        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
-//        edgePan.edges = .left
-//
-//        view.addGestureRecognizer(edgePan)
-//
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         setupScene()
         setupButtons()
@@ -130,7 +125,7 @@ class YUARViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func changePlaneColor() {
-        if !planeToggle.isOn {
+        if planeToggle.isOn {
             planeColor = UIColor.clear
             sceneView.debugOptions = []
             sceneView.showsStatistics = false
