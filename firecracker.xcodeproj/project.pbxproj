@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3F644520CA5893001CF570 /* PaperMoney.storyboard */; };
-		4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */; };
-		4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */; };
-		4C6581C720CB64360093F69D /* sticky note.scn in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C420CB64360093F69D /* sticky note.scn */; };
+		4C6581C720CB64360093F69D /* paperMoney.scn in Resources */ = {isa = PBXBuildFile; fileRef = 4C6581C420CB64360093F69D /* paperMoney.scn */; };
 		9A1FE1D420C0E7B900D32095 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */; };
 		9A1FE1D620C0E7B900D32095 /* FirecrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */; };
 		9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A1FE1D720C0E7B900D32095 /* Main.storyboard */; };
@@ -39,14 +37,14 @@
 		9AEF06FA20D6BB9A00CF738B /* FireworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF06F920D6BB9900CF738B /* FireworkViewController.swift */; };
 		9AEF06FC20D6BBB600CF738B /* YUARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF06FB20D6BBB600CF738B /* YUARViewController.swift */; };
 		9AEF06FE20D6BC8800CF738B /* blu e rosso.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AEF06FD20D6BC8800CF738B /* blu e rosso.jpg */; };
+		9AFDF07720D7A0840090F8BD /* paperMoney.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9AFDF07520D7A0840090F8BD /* paperMoney.jpeg */; };
+		9AFDF07820D7A0840090F8BD /* paperMoneyShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AFDF07620D7A0840090F8BD /* paperMoneyShadow.png */; };
 		A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */ = {isa = PBXBuildFile; fileRef = A080237120CEACCB0026E0F6 /* CrescentMoon.scn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4C3F644620CA5893001CF570 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = firecracker/Base.lproj/PaperMoney.storyboard; sourceTree = "<group>"; };
-		4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stickyNoteShadow_DIFFUSE.png; sourceTree = "<group>"; };
-		4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stickyNote_DIFFUSE.png; sourceTree = "<group>"; };
-		4C6581C420CB64360093F69D /* sticky note.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "sticky note.scn"; sourceTree = "<group>"; };
+		4C6581C420CB64360093F69D /* paperMoney.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = paperMoney.scn; sourceTree = "<group>"; };
 		9A1FE1D020C0E7B900D32095 /* firecracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = firecracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1FE1D320C0E7B900D32095 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1FE1D520C0E7B900D32095 /* FirecrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirecrackerViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		9AEF06F920D6BB9900CF738B /* FireworkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkViewController.swift; sourceTree = "<group>"; };
 		9AEF06FB20D6BBB600CF738B /* YUARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YUARViewController.swift; sourceTree = "<group>"; };
 		9AEF06FD20D6BC8800CF738B /* blu e rosso.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "blu e rosso.jpg"; sourceTree = "<group>"; };
+		9AFDF07520D7A0840090F8BD /* paperMoney.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = paperMoney.jpeg; sourceTree = "<group>"; };
+		9AFDF07620D7A0840090F8BD /* paperMoneyShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paperMoneyShadow.png; sourceTree = "<group>"; };
 		A080237120CEACCB0026E0F6 /* CrescentMoon.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CrescentMoon.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6581C120CB64360093F69D /* textures */,
-				4C6581C420CB64360093F69D /* sticky note.scn */,
+				4C6581C420CB64360093F69D /* paperMoney.scn */,
 			);
 			path = "sticky note";
 			sourceTree = "<group>";
@@ -103,8 +103,8 @@
 		4C6581C120CB64360093F69D /* textures */ = {
 			isa = PBXGroup;
 			children = (
-				4C6581C220CB64360093F69D /* stickyNoteShadow_DIFFUSE.png */,
-				4C6581C320CB64360093F69D /* stickyNote_DIFFUSE.png */,
+				9AFDF07520D7A0840090F8BD /* paperMoney.jpeg */,
+				9AFDF07620D7A0840090F8BD /* paperMoneyShadow.png */,
 			);
 			path = textures;
 			sourceTree = "<group>";
@@ -263,7 +263,6 @@
 				9AEF06EE20D6566400CF738B /* bucket.scn in Resources */,
 				9AEF06F620D6BB7100CF738B /* reactor.scnp in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
-				4C6581C520CB64360093F69D /* stickyNoteShadow_DIFFUSE.png in Resources */,
 				9AA944C120C306380003E31D /* Explode.scnp in Resources */,
 				9A1FE1F420C1A83600D32095 /* blue_firecracker.jpg in Resources */,
 				9AC4BE5C20C44D8300259387 /* firebox.png in Resources */,
@@ -271,12 +270,13 @@
 				9ACF9ECA20D057CD00C7BE2A /* bucket_texture.png in Resources */,
 				9AED313B20D2EA7300149FD7 /* dark_gray.jpeg in Resources */,
 				9A1FE1F320C1A83600D32095 /* gray_firecracker.jpg in Resources */,
+				9AFDF07820D7A0840090F8BD /* paperMoneyShadow.png in Resources */,
 				4C3F644720CA5893001CF570 /* PaperMoney.storyboard in Resources */,
 				9A1FE1D920C0E7B900D32095 /* Main.storyboard in Resources */,
 				9A4077FC20D0C4C40038C787 /* Assets.xcassets in Resources */,
+				9AFDF07720D7A0840090F8BD /* paperMoney.jpeg in Resources */,
 				9A1FE1F120C1A83600D32095 /* purple_firecracker.jpg in Resources */,
-				4C6581C620CB64360093F69D /* stickyNote_DIFFUSE.png in Resources */,
-				4C6581C720CB64360093F69D /* sticky note.scn in Resources */,
+				4C6581C720CB64360093F69D /* paperMoney.scn in Resources */,
 				A080237220CEACCB0026E0F6 /* CrescentMoon.scn in Resources */,
 				9A1FE1F220C1A83600D32095 /* red_firecracker.jpg in Resources */,
 			);

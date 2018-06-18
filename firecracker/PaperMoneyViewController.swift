@@ -97,7 +97,7 @@ class PaperMoneyViewController: UIViewController {
     }
     
     private func setupPaper() {
-        let scene = SCNScene(named: "sticky note.scn")!
+        let scene = SCNScene(named: "paperMoney.scn")!
         paper = scene.rootNode.childNode(withName: "note", recursively: true)
         paper?.simdPosition = float3(0, 0, -0.5)
         paper?.physicsBody = .dynamic()
