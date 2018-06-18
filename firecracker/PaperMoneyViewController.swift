@@ -11,13 +11,14 @@ import UIKit
 
 class PaperMoneyViewController: UIViewController {
     private var sceneView:ARSCNView!
+    var audioSource: SCNAudioSource!
     
     var paper: SCNNode?
     /// Convenience accessor for the session owned by ARSCNView.
     var session: ARSession {
         return sceneView.session
     }
-    
+    var isBurnning = false
     var isHit = false
     var papers = Set<SCNNode>()
     private var planeToggle = UISwitch()
@@ -50,6 +51,7 @@ class PaperMoneyViewController: UIViewController {
         planeColor = UIColor.init(red: 0.6, green: 0.6, blue: 1, alpha: 0.5)
         setupScene()
         setupButtons()
+        setUpAudio()
 //        changePlaneColor()
         addTapGesturesToSceneView()
         
@@ -162,16 +164,11 @@ class PaperMoneyViewController: UIViewController {
     }
     
     @objc func fireButtonDidClick(_ sender: Any) {
-        extinguishTime = currentTime + 5
-        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
-            assert(false)
-        }
-        bucketNode.addParticleSystem(fire)
+        startBurnning()
     }
     
     @objc func stopButtonDidClick(_ sender:Any) {
-        extinguishTime = currentTime
-        bucketNode.removeAllParticleSystems()
+        stopBurnning()
     }
     
     func changePlaneColor() {
@@ -265,15 +262,11 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
             let bucketNode2 = bucketReal.rootNode.childNode(withName: "bucket", recursively: true)!
             bucketNode2.simdPosition = float3(planeAnchor.center.x, planeAnchor.center.y, planeAnchor.center.z)
             
-            
-            guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
-                assert(false)
-            }
-            
-            bucket.addParticleSystem(fire)
             bucketNode = bucket
             node.addChildNode(bucket)
             node.addChildNode(bucketNode2)
+            
+            startBurnning()
         }
     }
     
@@ -299,7 +292,7 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         }
         
         if extinguishTime < time {
-            bucketNode.removeAllParticleSystems()
+            stopBurnning()
         }
         
         guard let planeNode = sceneView.scene.rootNode.childNode(withName: "plane", recursively: true) else { return }
@@ -311,20 +304,60 @@ extension PaperMoneyViewController:ARSCNViewDelegate {
         
         if paper?.parent != nil && paper!.presentation.simdWorldPosition.y < -2 {
             paper!.removeFromParentNode()
-            guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
-                assert(false)
-            }
-            bucketNode.addParticleSystem(fire)
-            papers.remove(paper!)
-            if extinguishTime > currentTime {
-                extinguishTime = extinguishTime + 5
-            } else {
-                extinguishTime = currentTime + 5
-            }
+            
         }
     }
 }
 
+extension PaperMoneyViewController {
+    private func startBurnning() {
+        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+            assert(false)
+        }
+        extinguishTime = currentTime + 5
+        bucketNode.addParticleSystem(fire)
+        playSound()
+        isBurnning = true
+    }
+    
+    private func increaseBurnning() {
+        guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
+            assert(false)
+        }
+        extinguishTime = extinguishTime + 5
+        bucketNode.addParticleSystem(fire)
+        isBurnning = true
+    }
+    
+    private func stopBurnning() {
+        isBurnning = false
+        extinguishTime = currentTime
+        bucketNode.removeAllParticleSystems()
+        stopSound()
+    }
+    
+    private func setUpAudio() {
+        // Instantiate the audio source
+        audioSource = SCNAudioSource(fileNamed: "fireplace.mp3")!
+        // As an environmental sound layer, audio should play indefinitely
+        audioSource.loops = true
+        // Decode the audio from disk ahead of time to prevent a delay in playback
+        audioSource.load()
+    }
+    /// Plays a sound on the `bucketNode` using SceneKit's positional audio
+    /// - Tag: AddAudioPlayer
+    private func playSound() {
+        // Ensure there is only one audio player
+        bucketNode.removeAllAudioPlayers()
+        // Create a player from the source and add it to `bucketNode`
+        bucketNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+    }
+    
+    private func stopSound() {
+        // Ensure there is only one audio player
+        bucketNode.removeAllAudioPlayers()
+    }
+}
 extension PaperMoneyViewController:ARSessionDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required.
@@ -360,12 +393,11 @@ extension PaperMoneyViewController: SCNPhysicsContactDelegate {
                 contact.nodeB.removeFromParentNode()
                 self.papers.remove(contact.nodeB)
                 self.extinguishTime = self.extinguishTime + 5
-                
-                guard let fire = SCNParticleSystem(named: "fire", inDirectory: nil) else {
-                    assert(false)
+                if !self.isBurnning {
+                    self.startBurnning()
+                } else {
+                    self.increaseBurnning()
                 }
-                self.bucketNode.addParticleSystem(fire)
-                
             }
             else {
                 contact.nodeA.removeFromParentNode()

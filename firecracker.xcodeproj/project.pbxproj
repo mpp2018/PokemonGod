@@ -23,6 +23,7 @@
 		9A5DDD7120D4B66900EDDD4E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */; };
 		9A66FC6020C300B600FFAF65 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5E20C300B600FFAF65 /* spark.png */; };
 		9A66FC6120C300B600FFAF65 /* fire.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9A66FC5F20C300B600FFAF65 /* fire.scnp */; };
+		9A7A741A20D8245700233174 /* fireplace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A7A741920D8245600233174 /* fireplace.mp3 */; };
 		9AA944C120C306380003E31D /* Explode.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C020C306380003E31D /* Explode.scnp */; };
 		9AA944C320C306530003E31D /* CircleParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AA944C220C306530003E31D /* CircleParticle.png */; };
 		9ABC940720C7EB10005724C5 /* MoonBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */; };
@@ -61,6 +62,7 @@
 		9A5DDD7020D4B66900EDDD4E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9A66FC5E20C300B600FFAF65 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9A66FC5F20C300B600FFAF65 /* fire.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = fire.scnp; sourceTree = "<group>"; };
+		9A7A741920D8245600233174 /* fireplace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fireplace.mp3; sourceTree = "<group>"; };
 		9AA944C020C306380003E31D /* Explode.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explode.scnp; sourceTree = "<group>"; };
 		9AA944C220C306530003E31D /* CircleParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CircleParticle.png; sourceTree = "<group>"; };
 		9ABC940620C7EB10005724C5 /* MoonBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonBlockViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		9ACF9ECD20D061D200C7BE2A /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				9A7A741920D8245600233174 /* fireplace.mp3 */,
 				9ACF9ECB20D061C800C7BE2A /* firecracker.mp3 */,
 			);
 			path = Sounds;
@@ -260,6 +263,7 @@
 				9A4077FB20D0C2010038C787 /* launchScreen.png in Resources */,
 				9A66FC6020C300B600FFAF65 /* spark.png in Resources */,
 				9AEF06FE20D6BC8800CF738B /* blu e rosso.jpg in Resources */,
+				9A7A741A20D8245700233174 /* fireplace.mp3 in Resources */,
 				9AEF06EE20D6566400CF738B /* bucket.scn in Resources */,
 				9AEF06F620D6BB7100CF738B /* reactor.scnp in Resources */,
 				9AA944C320C306530003E31D /* CircleParticle.png in Resources */,
