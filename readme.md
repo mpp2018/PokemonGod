@@ -9,7 +9,7 @@ Traditional customs may cause environmental pollution and are disappearing gradu
 
 ![intro](firecracker/Intro/intro.jpeg "Intro")
 
-###Firecracker
+### Firecracker
 1. Detect a horizontal plane
 2. Touch the plane, and virtual firecrackers will appear.
 3. Drag on the screen to determine the length of firecrackers
