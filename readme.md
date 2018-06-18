@@ -1,3 +1,12 @@
+# Pokémon GOD
+
+Use ARKit to reserve chinese traditional customs. 
+
+## Getting Started
+* This sample code supports requires ARKit (iOS 11.3) or greater
+* ARKit is not available in the iOS Simulator
+* Building the sample requires Xcode 9.3 or later
+
 ## Motivation
 Traditional customs may cause environmental pollution and are disappearing gradually. We want to reserve these traditions in a virtual way (with AR) , which will not destroy the environment. 
 ## Members
