@@ -315,9 +315,11 @@ extension PaperMoneyViewController {
             assert(false)
         }
         extinguishTime = currentTime + 5
+        bucketNode.removeAllParticleSystems()
         bucketNode.addParticleSystem(fire)
         playSound()
         isBurnning = true
+        
     }
     
     private func increaseBurnning() {
@@ -351,12 +353,14 @@ extension PaperMoneyViewController {
         bucketNode.removeAllAudioPlayers()
         // Create a player from the source and add it to `bucketNode`
         bucketNode.addAudioPlayer(SCNAudioPlayer(source: audioSource))
+        
     }
     
     private func stopSound() {
         // Ensure there is only one audio player
         bucketNode.removeAllAudioPlayers()
     }
+    
 }
 extension PaperMoneyViewController:ARSessionDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
