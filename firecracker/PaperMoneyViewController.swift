@@ -87,6 +87,10 @@ class PaperMoneyViewController: UIViewController {
         resetTracking()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopBurnning()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
